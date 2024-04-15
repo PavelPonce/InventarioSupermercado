@@ -1,0 +1,51 @@
+solucion en blanco
+	
+	CAPA 1
+	biblioteca de clases .net core (solucion.Entities)
+	
+	CAPA 2
+	biblioteca de clases .net core (solucion.BusinessLogic)
+
+	CAPA 3
+	biblioteca de clases .net core (solucion.DataAccess)
+
+	CAPA 4
+	Aplciacion web de ASP.NET Core (MVC) (solucion.WebUI)
+	--- .NET 5.0
+============================================================================================
+DEPENDENCIAS------------------------
+Entities needs no references
+Data Access depends on Entities
+Business logic depends on Data Access
+Web UI depends on Business Logic
+=========================================================================================
+Instalar Nugets en Web UI------------
+----AutoMapper 11.0.0
+----AutoMapper.Extensions.Microsot.DependencyInjection 11.0.0
+----Microsoft.EntityFrameworkCore.SqlServer 5.0.0
+----Microsoft.VistualStudio.Web.CodeGeneration.Design 5.0.2
+=============================================================================================
+Instalar Nugets en Data Access------------
+----Dapper 2.0.90
+----Microsoft.EntityFrameworkCore 5.0.0
+----Microsoft.EntityFrameworkCore.SqlServer 5.0.0
+==============================================================================================
+En Proyecto Entities--------------------------
+Click derecho en Entities >> EF Core Power Tools (Lo que se instalo de Power Tools) >> Reverse Engineer / Ingieneria Inversa
+
+Crear Conexion normal. Al agregar las tablas NO AGREGAR LOS SPs, solo las tablas.
+
+En Generate EF Core Model in Project (project) Poner como carpeta de destino Entities y marcar en What to generate (Entities only).
+===========================================================================================
+En Proyecto Data Access
+Hacer el paso hecho en Entities pero con Context. Ademas crear un context adicional (proyectoAbrvContext) y pegar ahi la referencia del grupo.
+
+Crear carpeta de Repositorio. Tiene que ir una /INTERFAZ/ IRepository donde se instancien todos los metodos. En esta misma carpeta tienen que ir todos los repositorios de todas las tablas con su herencia de la interfaz IRepository. 
+=============================================================================================
+En Proyecto Business Logic
+Crear carpeta Services al mismo nivel que una clase de ServiceConfiguration. En services iran todos todos los Services de sus esquemas (EsquemaServices.cs). En ServiceConfiguration Iran 2 metodos. DataAccess En donde se hara un service.AddScoped por cada Repositorio. Y en BusinessLogic donde se hara un AddScoped por cada Servicio(Esquema).
+=============================================================================================
+En Web UI
+Crear Carpeta Extensiones
+
+
