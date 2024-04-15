@@ -1,0 +1,3 @@
+DB_SupermercadoInventario.mssql.somee.com
+alesol_SQLLogin_1
+alesol2024
