@@ -1,16 +1,16 @@
-CREATE SCHEMA Acce
+--CREATE SCHEMA Acce
 GO
 CREATE TABLE Acce.tbUsuarios(
 	Usuar_Id INT IDENTITY(1,1),
 	Usuar_Usuario NVARCHAR(50) NOT NULL,
 	Usuar_Contrasena NVARCHAR(MAX) NOT NULL,
-	Clien_Id INT NOT NULL,
+	Emple_Id INT NOT NULL,
 	Roles_Id INT NOT NULL,
 	Usuar_Admin BIT NOT NULL,
 	Usuar_UltimaSesion DATETIME NULL,
 	CONSTRAINT PK_tbUsuarios_Usuar_Id PRIMARY KEY(Usuar_Id),
 	CONSTRAINT UQ_tbUsuarios_Usuar_Usuario UNIQUE(Usuar_Usuario),
-	--CONSTRAINT FK_tbUsuarios_tbClientes_Perso_Id FOREIGN KEY (Perso_Id) REFERENCES Supr.tbClientes(Perso_Id),
+	--CONSTRAINT FK_tbUsuarios_tbEmpleados_Emple_Id FOREIGN KEY (Emple_Id) REFERENCES Supr.tbEmpleados(Emple_Id),
 	--CONSTRAINT FK_tbUsuarios_tbRoles_Roles_Id FOREIGN KEY (Roles_Id) REFERENCES Acce.tbRoles(Roles_Id),
 
 	[Usuar_UsuarioCreacion] [int] NOT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE Acce.tbPantallasPorRoles(
 GO
 ----------------------------------------------------------------------------------------------------------------
 GO
-CREATE SCHEMA Gral
+--CREATE SCHEMA Gral
 GO
 CREATE TABLE Gral.tbDepartamentos(
 	[Depar_Id] [char](2) NOT NULL,
@@ -183,7 +183,7 @@ CREATE TABLE Gral.tbImpuestos(
 GO
 ------------------------------------------------------------------------------------------------------------------
 GO
-CREATE SCHEMA Supr
+--CREATE SCHEMA Supr
 GO
 CREATE TABLE Supr.tbSucursales(
 	Sucur_Id INT IDENTITY(1,1),
@@ -229,6 +229,7 @@ CREATE TABLE Supr.tbProveedores(
 	CONSTRAINT FK_tbProveedores_tbUsuarios_Prove_UsuarioModificacion FOREIGN KEY(Prove_UsuarioModificacion) REFERENCES Acce.tbUsuarios(Usuar_Id),
 )
 GO
+
 CREATE TABLE Supr.tbProductos(
 	Produ_Id INT IDENTITY(1,1),
 	Produ_Descripcion NVARCHAR(50) NOT NULL,
@@ -236,13 +237,17 @@ CREATE TABLE Supr.tbProductos(
 	Unida_Id INT NOT NULL,
 	Produ_PrecioCompra NUMERIC(8,2) NOT NULL,
 	Produ_PrecioVenta NUMERIC(8,2) NOT NULL,
+	Impue_Id INT NOT NULL,
 	Categ_Id INT NOT NULL,
 	Prove_Id INT NOT NULL,
+	Sucur_Id INT NOT NULL,
 	CONSTRAINT PK_tbProductos_Produ_Id PRIMARY KEY(Produ_Id),
 	CONSTRAINT UQ_tbProductos_Produ_Descripcion UNIQUE(Produ_Descripcion),
 	CONSTRAINT FK_tbProductos_tbUnidades_Unida_Id FOREIGN KEY(Unida_Id) REFERENCES Gral.tbUnidades(Unida_Id),
 	CONSTRAINT FK_tbProductos_tbCategorias_Categ_Id FOREIGN KEY(Categ_Id) REFERENCES Gral.tbCategorias(Categ_Id),
 	CONSTRAINT FK_tbProdcutos_tbProveedores_Prove_Id FOREIGN KEY(Prove_Id) REFERENCES Supr.tbProveedores(Prove_Id),
+	CONSTRAINT FK_tbProductos_tbImpuestos_Impue_Id FOREIGN KEY(Impue_Id) REFERENCES Gral.tbImpuestos(Impue_Id),
+	CONSTRAINT FK_tbProductos_tbSucursales_Sucur_Id FOREIGN KEY(Sucur_Id) REFERENCES Supr.tbSucursales(Sucur_Id),
 
 	[Produ_UsuarioCreacion] [int] NOT NULL,
 	[Produ_FechaCreacion] [datetime] NOT NULL,
@@ -284,7 +289,7 @@ GO
 --CREATE TABLE Supr.tb
 ------------------------------------------------------------------------------------------
 GO
-CREATE SCHEMA Comp
+--CREATE SCHEMA Comp
 GO
 CREATE TABLE Comp.tbComprasEncabezado(
 	Comen_Id INT IDENTITY(1,1),
@@ -311,11 +316,9 @@ CREATE TABLE Comp.tbComprasDetalle(
 	Comen_Id INT NOT NULL,
 	Produ_Id INT NOT NULL,
 	Comde_Cantidad INT NOT NULL,
-	Unida_Id INT NOT NULL,
 	CONSTRAINT PK_tbComprasDetalle_Comde_Id PRIMARY KEY(Comde_Id),
 	CONSTRAINT FK_tbComprasDetalle_tbComprasEncabezado_Comen_Id FOREIGN KEY(Comen_Id) REFERENCES Comp.tbComprasEncabezado(Comen_Id),
 	CONSTRAINT FK_tbComprasDetalle_tbProductos_ProdU_Id FOREIGN KEY(Produ_Id) REFERENCES Supr.tbProductos(Produ_Id),
-	CONSTRAINT FK_tbComprasDetalle_tbUnidades_Unida_Id FOREIGN KEY(Unida_Id) REFERENCES Gral.tbUnidades(Unida_Id),
 
 	[Comde_UsuarioCreacion] [int] NOT NULL,
 	[Comde_FechaCreacion] [datetime] NOT NULL,
@@ -328,42 +331,41 @@ CREATE TABLE Comp.tbComprasDetalle(
 GO
 ------------------------------------------------------------------------------------------
 GO
-CREATE SCHEMA Venta
+--CREATE SCHEMA Venta
 GO
-CREATE TABLE Venta.tbClientes(
-	Clien_Id INT IDENTITY(1,1),
-	Clien_PrimerNombre NVARCHAR(50) NOT NULL,
-	Clien_SegundoNombre NVARCHAR(50),
-	Clien_PrimerApellido NVARCHAR(50) NOT NULL,
-	Clien_SegundoApellido NVARCHAR(50),
-	Clien_Sexo CHAR(1) NOT NULL,
-	Estad_Id INT NOT NULL,
-	Clien_Telefono NVARCHAR(20) NOT NULL,
-	Clien_Correo NVARCHAR(MAX) NOT NULL,
-	Clien_Direccion NVARCHAR(MAX) NOT NULL,
-	Munic_Id CHAR(4) NOT NULL,
-	CONSTRAINT PK_tbClientes_Clien_Id PRIMARY KEY(Clien_Id),
-	CONSTRAINT CK_tbClientes_Clien_Sexo CHECK (Clien_Sexo IN ('M','F')),
-	CONSTRAINT FK_tbClientes_tbEstadosCiviles_Estad_Id FOREIGN KEY(Estad_Id) REFERENCES Gral.tbEstadosCiviles(Estad_Id),
-	CONSTRAINT FK_tbClientes_tbMunicipios_Munic_Id FOREIGN KEY(Munic_Id) REFERENCES Gral.tbMunicipios(Munic_Id),
+--CREATE TABLE Venta.tbClientes(
+--	Clien_Id INT IDENTITY(1,1),
+--	Clien_PrimerNombre NVARCHAR(50) NOT NULL,
+--	Clien_SegundoNombre NVARCHAR(50),
+--	Clien_PrimerApellido NVARCHAR(50) NOT NULL,
+--	Clien_SegundoApellido NVARCHAR(50),
+--	Clien_Sexo CHAR(1) NOT NULL,
+--	Estad_Id INT NOT NULL,
+--	Clien_Telefono NVARCHAR(20) NOT NULL,
+--	Clien_Correo NVARCHAR(MAX) NOT NULL,
+--	Clien_Direccion NVARCHAR(MAX) NOT NULL,
+--	Munic_Id CHAR(4) NOT NULL,
+--	CONSTRAINT PK_tbClientes_Clien_Id PRIMARY KEY(Clien_Id),
+--	CONSTRAINT CK_tbClientes_Clien_Sexo CHECK (Clien_Sexo IN ('M','F')),
+--	CONSTRAINT FK_tbClientes_tbEstadosCiviles_Estad_Id FOREIGN KEY(Estad_Id) REFERENCES Gral.tbEstadosCiviles(Estad_Id),
+--	CONSTRAINT FK_tbClientes_tbMunicipios_Munic_Id FOREIGN KEY(Munic_Id) REFERENCES Gral.tbMunicipios(Munic_Id),
 
-	[Clien_UsuarioCreacion] [int] NOT NULL,
-	[Clien_FechaCreacion] [datetime] NOT NULL,
-	[Clien_UsuarioModificacion] [int] NULL,
-	[Clien_FechaModificacion] [datetime] NULL,
-	[Clien_Estado] [bit] CONSTRAINT DF_tbClientes_Clien_Estado DEFAULT 1,
-	CONSTRAINT FK_tbClientes_tbUsuarios_Clien_UsuarioCreacion FOREIGN KEY(Clien_UsuarioCreacion) REFERENCES Acce.tbUsuarios(Usuar_Id),
-	CONSTRAINT FK_tbClientes_tbUsuarios_Clien_UsuarioModificacion FOREIGN KEY(Clien_UsuarioModificacion) REFERENCES Acce.tbUsuarios(Usuar_Id),
-)
+--	[Clien_UsuarioCreacion] [int] NOT NULL,
+--	[Clien_FechaCreacion] [datetime] NOT NULL,
+--	[Clien_UsuarioModificacion] [int] NULL,
+--	[Clien_FechaModificacion] [datetime] NULL,
+--	[Clien_Estado] [bit] CONSTRAINT DF_tbClientes_Clien_Estado DEFAULT 1,
+--	CONSTRAINT FK_tbClientes_tbUsuarios_Clien_UsuarioCreacion FOREIGN KEY(Clien_UsuarioCreacion) REFERENCES Acce.tbUsuarios(Usuar_Id),
+--	CONSTRAINT FK_tbClientes_tbUsuarios_Clien_UsuarioModificacion FOREIGN KEY(Clien_UsuarioModificacion) REFERENCES Acce.tbUsuarios(Usuar_Id),
+--)
 GO
 CREATE TABLE Venta.tbVentasEncabezado(
 	Venen_Id INT IDENTITY(1,1),
 	Sucur_Id INT NOT NULL,
-	Clien_Id INT NOT NULL,
+	Venen_DireccionEnvio NVARCHAR(MAX) NOT NULL,
 	Venen_FechaPedido DATE NOT NULL,
 	CONSTRAINT PK_tbVentasEncabezado_Venen_Id PRIMARY KEY(Venen_Id),
 	CONSTRAINT FK_tbVentasEncabezado_tbSucursales_Sucur_Id FOREIGN KEY(Sucur_Id) REFERENCES Supr.tbSucursales(Sucur_Id),
-	CONSTRAINT FK_tbVentasEncabezado_tbClientes_Clien_Id FOREIGN KEY(Clien_Id) REFERENCES Venta.tbClientes(Clien_Id),
 
 	[Venen_UsuarioCreacion] [int] NOT NULL,
 	[Venen_FechaCreacion] [datetime] NOT NULL,
@@ -379,11 +381,9 @@ CREATE TABLE Venta.tbVentasDetalle(
 	Venen_Id INT NOT NULL,
 	Produ_Id INT NOT NULL,
 	Vende_Cantidad INT NOT NULL,
-	Unida_Id INT NOT NULL,
 	CONSTRAINT PK_tbVentasDetalle_Vende_Id PRIMARY KEY(Vende_Id),
 	CONSTRAINT FK_tbVentasDetalle_tbVentasEncabezado_Venen_Id FOREIGN KEY(Venen_Id) REFERENCES Venta.tbVentasEncabezado(Venen_Id),
 	CONSTRAINT FK_tbVentasDetalle_tbProductos_ProdU_Id FOREIGN KEY(Produ_Id) REFERENCES Supr.tbProductos(Produ_Id),
-	CONSTRAINT FK_tbVentasDetalle_tbUnidades_Unida_Id FOREIGN KEY(Unida_Id) REFERENCES Gral.tbUnidades(Unida_Id),
 
 	[Vende_UsuarioCreacion] [int] NOT NULL,
 	[Vende_FechaCreacion] [datetime] NOT NULL,
