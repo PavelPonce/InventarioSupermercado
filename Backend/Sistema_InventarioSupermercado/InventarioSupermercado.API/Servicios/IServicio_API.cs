@@ -1,4 +1,5 @@
 ﻿using InventarioSupermercado.Entities;
+using InventarioSupermercado.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

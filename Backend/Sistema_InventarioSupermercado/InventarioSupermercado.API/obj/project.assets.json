@@ -7472,11 +7472,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Sistema_InventarioSupermercado\\InventarioSupermercado.API\\InventarioSupermercado.API.csproj",
+      "projectUniqueName": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.API\\InventarioSupermercado.API.csproj",
       "projectName": "InventarioSupermercado.API",
-      "projectPath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Sistema_InventarioSupermercado\\InventarioSupermercado.API\\InventarioSupermercado.API.csproj",
+      "projectPath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.API\\InventarioSupermercado.API.csproj",
       "packagesPath": "C:\\Users\\aleso\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Sistema_InventarioSupermercado\\InventarioSupermercado.API\\obj\\",
+      "outputPath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -7497,8 +7497,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Sistema_InventarioSupermercado\\InventarioSupermercado.BusinessLogic\\InventarioSupermercado.BusinessLogic.csproj": {
-              "projectPath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Sistema_InventarioSupermercado\\InventarioSupermercado.BusinessLogic\\InventarioSupermercado.BusinessLogic.csproj"
+            "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.BusinessLogic\\InventarioSupermercado.BusinessLogic.csproj": {
+              "projectPath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.BusinessLogic\\InventarioSupermercado.BusinessLogic.csproj"
             }
           }
         }

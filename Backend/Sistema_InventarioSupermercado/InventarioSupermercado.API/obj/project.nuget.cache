@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OZ1tSNUbj5Wosdrf1wM2fWS1uAaa6JX8bIBr1iJ9k01wmGpeNsSx+GdfEST3vZU2cFgsYgYy7VsAgjqjhLNn9g==",
+  "dgSpecHash": "6k0UrhpepHG2TXTFU7oEBQyd7HOLaRkGloxxNj42Edxa6gK24oHMxiLWkr5e9dPrxkd6FsGD9cLd+BN5KaZlSw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Sistema_InventarioSupermercado\\InventarioSupermercado.API\\InventarioSupermercado.API.csproj",
+  "projectFilePath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.API\\InventarioSupermercado.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aleso\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\aleso\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

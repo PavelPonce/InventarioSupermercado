@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "48hALNixk0QttWVxfeW77pHoA3kMIB4FueqLXYvUQ6OAsT6JQKhWWYZCIjCfx6fDH26b8FQc4hYb/PsDUiN/5w==",
+  "dgSpecHash": "tjdUQcGMdhRM6MeOrIOoCurE4/XDmC4Xp8V2rrCxqi2dOE0uLzGCStkhCOwFA4mCcGa/OlUh4Ml2mfxTmXo4Hg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Sistema_InventarioSupermercado\\InventarioSupermercado.DataAccess\\InventarioSupermercado.DataAccess.csproj",
+  "projectFilePath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.DataAccess\\InventarioSupermercado.DataAccess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aleso\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
     "C:\\Users\\aleso\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

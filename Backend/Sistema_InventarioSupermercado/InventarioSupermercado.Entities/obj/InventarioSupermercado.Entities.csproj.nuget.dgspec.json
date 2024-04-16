@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\InventarioSupermercado.Entities.csproj": {}
+    "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\InventarioSupermercado.Entities.csproj": {}
   },
   "projects": {
-    "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\InventarioSupermercado.Entities.csproj": {
+    "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\InventarioSupermercado.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\InventarioSupermercado.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\InventarioSupermercado.Entities.csproj",
         "projectName": "InventarioSupermercado.Entities",
-        "projectPath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\InventarioSupermercado.Entities.csproj",
+        "projectPath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\InventarioSupermercado.Entities.csproj",
         "packagesPath": "C:\\Users\\aleso\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\obj\\",
+        "outputPath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

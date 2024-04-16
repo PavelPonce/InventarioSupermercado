@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Y1xbj3VtJ2wglgpJQtdya1TymcSPsPSJUtD/l9n9DAoTzZnO5LYVSYaqcDLZ7gWjIrqbjLKg/ds7SB9Ez0dGDQ==",
+  "dgSpecHash": "YU9e34I7MPHXezwTiGVVzesBp0MqHDAQ+LBVBSkFmX2aQysgZ4DBXvEJcb5Me1t9vFX8VpKrrTKK7TZ7q0R5XA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Sistema_InventarioSupermercado\\InventarioSupermercado.BusinessLogic\\InventarioSupermercado.BusinessLogic.csproj",
+  "projectFilePath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.BusinessLogic\\InventarioSupermercado.BusinessLogic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aleso\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
     "C:\\Users\\aleso\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

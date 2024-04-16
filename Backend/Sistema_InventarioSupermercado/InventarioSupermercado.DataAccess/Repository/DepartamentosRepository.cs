@@ -1,6 +1,7 @@
 ﻿using AHM.Total.Travel.DataAccess.Repositories;
 using Dapper;
 using InventarioSupermercado.Entities;
+using InventarioSupermercado.Entities.Entities;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;

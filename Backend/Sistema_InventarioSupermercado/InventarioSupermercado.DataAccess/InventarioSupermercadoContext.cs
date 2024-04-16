@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using InventarioSupermercado.DataAccess;
+using InventarioSupermercado.DataAccess.Context;
 
 namespace InventarioSupermercado.DataAccess
 {

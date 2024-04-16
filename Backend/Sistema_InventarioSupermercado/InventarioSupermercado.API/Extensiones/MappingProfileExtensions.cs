@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using InventarioSupermercado.Common.Models;
+using InventarioSupermercado.Entities.Entities;
 
 namespace InventarioSupermercado.API.Extensiones
 {
@@ -15,7 +15,9 @@ namespace InventarioSupermercado.API.Extensiones
         public MappingProfileExtensions()
         {
             CreateMap<DepartamentosViewModel, tbDepartamentos>().ReverseMap();
-           
+            CreateMap<ComprasDetalleViewModel, tbComprasDetalle>().ReverseMap();
+
+
 
         }
     }
