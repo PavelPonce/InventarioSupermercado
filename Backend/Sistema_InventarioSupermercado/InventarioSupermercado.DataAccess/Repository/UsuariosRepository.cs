@@ -30,42 +30,20 @@ namespace InventarioSupermercado.DataAccess.Repository
             throw new NotImplementedException();
         }
 
-        public RequestStatus Delete(tbUsuarios item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<tbUsuarios> Details(int? Usuar_Id)
-        {
-            string sql = ScriptDataBase.Usuarios_Buscar;
-
-            List<tbUsuarios> result = new List<tbUsuarios>();
-
-            using (var db = new SqlConnection(InventarioSupermercadoContext.ConnectionString))
-            {
-                var parameters = new { Usuar_Id };
-                result = db.Query<tbUsuarios>(sql, parameters, commandType: CommandType.StoredProcedure).ToList();
-                return result;
-            }
-        }
-
-        public IEnumerable<tbUsuarios> find(int Usuar_Id)
-        {
-            string sql = ScriptDataBase.Usuarios_Buscar;
-
-            List<tbUsuarios> result = new List<tbUsuarios>();
-
-            using (var db = new SqlConnection(InventarioSupermercadoContext.ConnectionString))
-            {
-                var parameters = new { Usuar_Id };
-                result = db.Query<tbUsuarios>(sql, parameters, commandType: CommandType.StoredProcedure).ToList();
-                return result;
-            }
-        }
-
         public tbUsuarios find(int? id)
         {
-            throw new NotImplementedException();
+            string sql = ScriptDataBase.Usuarios_Buscar;
+
+
+            using (var db = new SqlConnection(InventarioSupermercadoContext.ConnectionString))
+            {
+                var parameters = new { Usuar_Id = id };
+                var list = db.Query<tbUsuarios>(sql, parameters, commandType: CommandType.StoredProcedure).ToList();
+
+                var result = list.First();
+
+                return result;
+            }
         }
 
         public RequestStatus Insert(tbUsuarios item)
