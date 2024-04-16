@@ -4,13 +4,12 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace InventarioSupermercado.Entities
+namespace InventarioSupermercado.Entities.Entities
 {
     public partial class tbEstadosCiviles
     {
         public tbEstadosCiviles()
         {
-            tbClientes = new HashSet<tbClientes>();
             tbEmpleados = new HashSet<tbEmpleados>();
         }
 
@@ -24,7 +23,6 @@ namespace InventarioSupermercado.Entities
 
         public virtual tbUsuarios Estad_UsuarioCreacionNavigation { get; set; }
         public virtual tbUsuarios Estad_UsuarioModificacionNavigation { get; set; }
-        public virtual ICollection<tbClientes> tbClientes { get; set; }
         public virtual ICollection<tbEmpleados> tbEmpleados { get; set; }
     }
 }

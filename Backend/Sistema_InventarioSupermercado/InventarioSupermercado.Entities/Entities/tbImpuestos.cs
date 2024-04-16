@@ -4,10 +4,15 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace InventarioSupermercado.Entities
+namespace InventarioSupermercado.Entities.Entities
 {
     public partial class tbImpuestos
     {
+        public tbImpuestos()
+        {
+            tbProductos = new HashSet<tbProductos>();
+        }
+
         public int Impue_Id { get; set; }
         public decimal Impue_Descripcion { get; set; }
         public int Impue_UsuarioCreacion { get; set; }
@@ -18,5 +23,6 @@ namespace InventarioSupermercado.Entities
 
         public virtual tbUsuarios Impue_UsuarioCreacionNavigation { get; set; }
         public virtual tbUsuarios Impue_UsuarioModificacionNavigation { get; set; }
+        public virtual ICollection<tbProductos> tbProductos { get; set; }
     }
 }

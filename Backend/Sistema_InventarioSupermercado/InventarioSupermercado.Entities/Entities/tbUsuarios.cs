@@ -4,18 +4,18 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace InventarioSupermercado.Entities
+namespace InventarioSupermercado.Entities.Entities
 {
     public partial class tbUsuarios
     {
         public tbUsuarios()
         {
+            InverseUsuar_UsuarioCreacionNavigation = new HashSet<tbUsuarios>();
+            InverseUsuar_UsuarioModificacionNavigation = new HashSet<tbUsuarios>();
             tbCargosCargo_UsuarioCreacionNavigation = new HashSet<tbCargos>();
             tbCargosCargo_UsuarioModificacionNavigation = new HashSet<tbCargos>();
             tbCategoriasCateg_UsuarioCreacionNavigation = new HashSet<tbCategorias>();
             tbCategoriasCateg_UsuarioModificacionNavigation = new HashSet<tbCategorias>();
-            tbClientesClien_UsuarioCreacionNavigation = new HashSet<tbClientes>();
-            tbClientesClien_UsuarioModificacionNavigation = new HashSet<tbClientes>();
             tbComprasDetalleComde_UsuarioCreacionNavigation = new HashSet<tbComprasDetalle>();
             tbComprasDetalleComde_UsuarioModificacionNavigation = new HashSet<tbComprasDetalle>();
             tbComprasEncabezadoComen_UsuarioCreacionNavigation = new HashSet<tbComprasEncabezado>();
@@ -53,7 +53,7 @@ namespace InventarioSupermercado.Entities
         public int Usuar_Id { get; set; }
         public string Usuar_Usuario { get; set; }
         public string Usuar_Contrasena { get; set; }
-        public int Clien_Id { get; set; }
+        public int Emple_Id { get; set; }
         public int Roles_Id { get; set; }
         public bool Usuar_Admin { get; set; }
         public DateTime? Usuar_UltimaSesion { get; set; }
@@ -63,12 +63,16 @@ namespace InventarioSupermercado.Entities
         public DateTime? Usuar_FechaModificacion { get; set; }
         public bool? Usuar_Estado { get; set; }
 
+        public virtual tbEmpleados Emple { get; set; }
+        public virtual tbRoles Roles { get; set; }
+        public virtual tbUsuarios Usuar_UsuarioCreacionNavigation { get; set; }
+        public virtual tbUsuarios Usuar_UsuarioModificacionNavigation { get; set; }
+        public virtual ICollection<tbUsuarios> InverseUsuar_UsuarioCreacionNavigation { get; set; }
+        public virtual ICollection<tbUsuarios> InverseUsuar_UsuarioModificacionNavigation { get; set; }
         public virtual ICollection<tbCargos> tbCargosCargo_UsuarioCreacionNavigation { get; set; }
         public virtual ICollection<tbCargos> tbCargosCargo_UsuarioModificacionNavigation { get; set; }
         public virtual ICollection<tbCategorias> tbCategoriasCateg_UsuarioCreacionNavigation { get; set; }
         public virtual ICollection<tbCategorias> tbCategoriasCateg_UsuarioModificacionNavigation { get; set; }
-        public virtual ICollection<tbClientes> tbClientesClien_UsuarioCreacionNavigation { get; set; }
-        public virtual ICollection<tbClientes> tbClientesClien_UsuarioModificacionNavigation { get; set; }
         public virtual ICollection<tbComprasDetalle> tbComprasDetalleComde_UsuarioCreacionNavigation { get; set; }
         public virtual ICollection<tbComprasDetalle> tbComprasDetalleComde_UsuarioModificacionNavigation { get; set; }
         public virtual ICollection<tbComprasEncabezado> tbComprasEncabezadoComen_UsuarioCreacionNavigation { get; set; }

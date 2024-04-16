@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace InventarioSupermercado.Entities
+namespace InventarioSupermercado.Entities.Entities
 {
     public partial class tbVentasEncabezado
     {
@@ -15,7 +15,7 @@ namespace InventarioSupermercado.Entities
 
         public int Venen_Id { get; set; }
         public int Sucur_Id { get; set; }
-        public int Clien_Id { get; set; }
+        public string Venen_DireccionEnvio { get; set; }
         public DateTime Venen_FechaPedido { get; set; }
         public int Venen_UsuarioCreacion { get; set; }
         public DateTime Venen_FechaCreacion { get; set; }
@@ -23,7 +23,6 @@ namespace InventarioSupermercado.Entities
         public DateTime? Venen_FechaModificacion { get; set; }
         public bool? Venen_Estado { get; set; }
 
-        public virtual tbClientes Clien { get; set; }
         public virtual tbSucursales Sucur { get; set; }
         public virtual tbUsuarios Venen_UsuarioCreacionNavigation { get; set; }
         public virtual tbUsuarios Venen_UsuarioModificacionNavigation { get; set; }

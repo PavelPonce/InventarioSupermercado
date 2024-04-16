@@ -4,15 +4,13 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace InventarioSupermercado.Entities
+namespace InventarioSupermercado.Entities.Entities
 {
     public partial class tbUnidades
     {
         public tbUnidades()
         {
-            tbComprasDetalle = new HashSet<tbComprasDetalle>();
             tbProductos = new HashSet<tbProductos>();
-            tbVentasDetalle = new HashSet<tbVentasDetalle>();
         }
 
         public int Unida_Id { get; set; }
@@ -25,8 +23,6 @@ namespace InventarioSupermercado.Entities
 
         public virtual tbUsuarios Unida_UsuarioCreacionNavigation { get; set; }
         public virtual tbUsuarios Unida_UsuarioModificacionNavigation { get; set; }
-        public virtual ICollection<tbComprasDetalle> tbComprasDetalle { get; set; }
         public virtual ICollection<tbProductos> tbProductos { get; set; }
-        public virtual ICollection<tbVentasDetalle> tbVentasDetalle { get; set; }
     }
 }

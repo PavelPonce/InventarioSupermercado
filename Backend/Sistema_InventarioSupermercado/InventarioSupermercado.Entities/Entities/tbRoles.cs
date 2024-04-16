@@ -4,13 +4,14 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace InventarioSupermercado.Entities
+namespace InventarioSupermercado.Entities.Entities
 {
     public partial class tbRoles
     {
         public tbRoles()
         {
             tbPantallasPorRoles = new HashSet<tbPantallasPorRoles>();
+            tbUsuarios = new HashSet<tbUsuarios>();
         }
 
         public int Roles_Id { get; set; }
@@ -24,5 +25,6 @@ namespace InventarioSupermercado.Entities
         public virtual tbUsuarios Roles_UsuarioCreacionNavigation { get; set; }
         public virtual tbUsuarios Roles_UsuarioModificacionNavigation { get; set; }
         public virtual ICollection<tbPantallasPorRoles> tbPantallasPorRoles { get; set; }
+        public virtual ICollection<tbUsuarios> tbUsuarios { get; set; }
     }
 }
