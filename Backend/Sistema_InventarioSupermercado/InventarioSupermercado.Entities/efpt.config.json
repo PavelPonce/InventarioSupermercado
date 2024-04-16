@@ -1,0 +1,113 @@
+﻿{
+   "CodeGenerationMode": 0,
+   "ContextClassName": "DB_SupermercadoinventarioContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": null,
+   "ProjectRootNamespace": "InventarioSupermercado.Entities",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[Acce].[tbPantallas]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Acce].[tbPantallasPorRoles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Acce].[tbRoles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Acce].[tbUsuarios]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Comp].[tbComprasDetalle]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Comp].[tbComprasEncabezado]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Gral].[tbCargos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Gral].[tbCategorias]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Gral].[tbDepartamentos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Gral].[tbEstadosCiviles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Gral].[tbImpuestos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Gral].[tbMunicipios]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Gral].[tbUnidades]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Supr].[tbEmpleados]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Supr].[tbProductos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Supr].[tbProveedores]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Supr].[tbSucursales]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Venta].[tbClientes]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Venta].[tbVentasDetalle]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Venta].[tbVentasEncabezado]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "Alejandra\\SQLEXPRESS01.DB_SupermercadoInventario",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": true,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseNoConstructor": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false
+}

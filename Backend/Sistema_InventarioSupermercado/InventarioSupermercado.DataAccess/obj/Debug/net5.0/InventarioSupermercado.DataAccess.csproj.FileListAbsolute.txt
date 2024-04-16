@@ -1,0 +1,17 @@
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.DataAccess\bin\Debug\net5.0\InventarioSupermercado.DataAccess.deps.json
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.DataAccess\bin\Debug\net5.0\InventarioSupermercado.DataAccess.dll
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.DataAccess\bin\Debug\net5.0\ref\InventarioSupermercado.DataAccess.dll
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.DataAccess\bin\Debug\net5.0\InventarioSupermercado.DataAccess.pdb
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.DataAccess\bin\Debug\net5.0\InventarioSupermercado.Common.dll
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.DataAccess\bin\Debug\net5.0\InventarioSupermercado.Entities.dll
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.DataAccess\bin\Debug\net5.0\InventarioSupermercado.Common.pdb
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.DataAccess\bin\Debug\net5.0\InventarioSupermercado.Entities.pdb
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.DataAccess\obj\Debug\net5.0\InventarioSupermercado.DataAccess.csproj.AssemblyReference.cache
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.DataAccess\obj\Debug\net5.0\InventarioSupermercado.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.DataAccess\obj\Debug\net5.0\InventarioSupermercado.DataAccess.AssemblyInfoInputs.cache
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.DataAccess\obj\Debug\net5.0\InventarioSupermercado.DataAccess.AssemblyInfo.cs
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.DataAccess\obj\Debug\net5.0\InventarioSupermercado.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.DataAccess\obj\Debug\net5.0\InventarioSupermercado.DataAccess.csproj.CopyComplete
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.DataAccess\obj\Debug\net5.0\InventarioSupermercado.DataAccess.dll
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.DataAccess\obj\Debug\net5.0\ref\InventarioSupermercado.DataAccess.dll
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.DataAccess\obj\Debug\net5.0\InventarioSupermercado.DataAccess.pdb

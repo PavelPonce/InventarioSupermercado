@@ -1,0 +1,12 @@
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\bin\Debug\net5.0\InventarioSupermercado.Entities.deps.json
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\bin\Debug\net5.0\InventarioSupermercado.Entities.dll
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\bin\Debug\net5.0\ref\InventarioSupermercado.Entities.dll
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\bin\Debug\net5.0\InventarioSupermercado.Entities.pdb
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\obj\Debug\net5.0\InventarioSupermercado.Entities.csproj.AssemblyReference.cache
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\obj\Debug\net5.0\InventarioSupermercado.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\obj\Debug\net5.0\InventarioSupermercado.Entities.AssemblyInfoInputs.cache
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\obj\Debug\net5.0\InventarioSupermercado.Entities.AssemblyInfo.cs
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\obj\Debug\net5.0\InventarioSupermercado.Entities.csproj.CoreCompileInputs.cache
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\obj\Debug\net5.0\InventarioSupermercado.Entities.dll
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\obj\Debug\net5.0\ref\InventarioSupermercado.Entities.dll
+C:\Users\aleso\OneDrive\Escritorio\InventarioSupermercado\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\obj\Debug\net5.0\InventarioSupermercado.Entities.pdb
