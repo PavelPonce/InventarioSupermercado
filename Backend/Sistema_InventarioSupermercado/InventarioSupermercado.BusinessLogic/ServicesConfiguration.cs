@@ -22,17 +22,10 @@ namespace InventarioSupermercado.BusinessLogic
             service.AddScoped<UsuariosRepository>();
             service.AddScoped<VentasDetalleRepository>();
             service.AddScoped<VentasEncabezadoRepository>();
-
-
-
-
+            service.AddScoped<ContraeñaRepository>();
 
             InventarioSupermercadoContext.BuildConnectionString(conn);
-
-
         }
-
-
 
         public static void BusinessLogic(this IServiceCollection service)
         {
@@ -40,8 +33,6 @@ namespace InventarioSupermercado.BusinessLogic
             service.AddScoped<AccesoService>();
 
             service.AddScoped<CompraService>();
-
-
 
         }
     }

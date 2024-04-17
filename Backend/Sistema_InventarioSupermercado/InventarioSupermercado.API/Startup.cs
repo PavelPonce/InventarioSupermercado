@@ -7,8 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using InventarioSupermercado.BusinessLogic;
 using InventarioSupermercado.API.Extensiones;
+using InventarioSupermercado.API.Services;
+using InventarioSupermercado.BusinessLogic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,10 @@ namespace InventarioSupermercado.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+
+            services.AddTransient<IMailService, MailService>();
+
             services.DataAccess(Configuration.GetConnectionString("InventarioSupermercadoCon"));
             services.BusinessLogic();
             services.AddAutoMapper(x => x.AddProfile<MappingProfileExtensions>(), AppDomain.CurrentDomain.GetAssemblies());
@@ -63,7 +68,6 @@ namespace InventarioSupermercado.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "InventarioSupermercado.API v1"));
             }
 
-            app.UseCors("AllowSpecificOrigin");
 
             app.UseHttpsRedirection();
 
