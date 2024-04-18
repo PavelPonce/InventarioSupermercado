@@ -8,24 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\aleso\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\LAB2\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\InventarioSupermercado.Entities.csproj",
+      "projectUniqueName": "C:\\Users\\LAB2\\Desktop\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\InventarioSupermercado.Entities.csproj",
       "projectName": "InventarioSupermercado.Entities",
-      "projectPath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\InventarioSupermercado.Entities.csproj",
-      "packagesPath": "C:\\Users\\aleso\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\obj\\",
+      "projectPath": "C:\\Users\\LAB2\\Desktop\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\InventarioSupermercado.Entities.csproj",
+      "packagesPath": "C:\\Users\\LAB2\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\LAB2\\Desktop\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\aleso\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\LAB2\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

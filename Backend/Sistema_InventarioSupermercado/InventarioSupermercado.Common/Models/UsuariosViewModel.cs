@@ -43,20 +43,16 @@ namespace InventarioSupermercado.Common.Models
         public DateTime? Usuar_FechaModificacion { get; set; }
         public bool? Usuar_Estado { get; set; }
         [NotMapped]
-        [Display(Name = "Usuario creacion")]
 
         public string UsuarioCreacion { get; set; }
         [NotMapped]
-        [Display(Name = "Usuario Modificacion")]
 
         public string UsuarioModificacion { get; set; }
-        [NotMapped]
-        [Display(Name = "Empleado")]
+      
 
-        public string empleado { get; set; }
         [NotMapped]
-        [Display(Name = "Rol")]
-
         public string Roles_Descripcion { get; set; }
+        [NotMapped]
+        public string Perso_NombreCompleto { get; set; }
     }
 }

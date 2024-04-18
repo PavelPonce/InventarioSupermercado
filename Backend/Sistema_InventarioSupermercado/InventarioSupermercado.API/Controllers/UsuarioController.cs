@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace InventarioSupermercado.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class UsuarioController : Controller
     {
         private readonly AccesoService _accesoService;
@@ -29,7 +29,13 @@ namespace InventarioSupermercado.API.Controllers
             var list = _accesoService.ListUsuarios();
             return Ok(list);
         }
+        [HttpGet("Login/{usuario}/{contrasena}")]
+        public IActionResult Login(string usuario, string contrasena)
+        {
+            var list = _accesoService.LoginUser(usuario, contrasena);
 
+            return Ok(list);
+        }
 
         [HttpPost("Insert/Usuarios")]
         public IActionResult InsertCompraDetalle(UsuariosViewModel item)

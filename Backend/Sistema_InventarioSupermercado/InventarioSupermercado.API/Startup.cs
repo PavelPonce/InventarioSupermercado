@@ -50,7 +50,7 @@ namespace InventarioSupermercado.API
                 options.AddPolicy("AllowSpecificOrigin",
                   builder =>
                   {
-                      builder.WithOrigins("https://localhost:44346")
+                      builder.WithOrigins("http://localhost:62634")
                              .AllowAnyHeader()
                              .AllowAnyMethod()
                              .AllowAnyOrigin();
@@ -72,6 +72,9 @@ namespace InventarioSupermercado.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            // Habilitar CORS
+            app.UseCors("AllowSpecificOrigin");
 
             app.UseAuthorization();
 

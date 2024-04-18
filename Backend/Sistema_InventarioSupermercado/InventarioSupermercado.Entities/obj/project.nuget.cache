@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8cBNGZCmtJeIhIZiEMS4waI5bD0+8XVFOSAUa37ecfKZ9lLaWg7dyNefVbCnk1+BANOWJepQWOtfiKoIgTQz2w==",
+  "dgSpecHash": "DKzbvIF0kZGZPWeaiyVayRQjM/3MLZ2SDV6Z8Q1huuaunv5i4M9si3CX3SX7CoqilConrufb+snctJI/F3UaQg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\InventarioSupermercado.Entities.csproj",
+  "projectFilePath": "C:\\Users\\LAB2\\Desktop\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\InventarioSupermercado.Entities.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

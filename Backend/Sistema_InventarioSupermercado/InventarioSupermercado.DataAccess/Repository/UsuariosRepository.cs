@@ -67,7 +67,28 @@ namespace InventarioSupermercado.DataAccess.Repository
                 return new RequestStatus { CodeStatus = result, MessageStatus = "" };
             }
         }
+        public IEnumerable<tbUsuarios> Login(string usuario, string contrasena)
+        {
+            string sql = ScriptDataBase.Usuarios_Login;
 
+            using (var db = new SqlConnection(InventarioSupermercadoContext.ConnectionString))
+            {
+
+                var parameters = new { Usuario = usuario, Contrasena = contrasena };
+
+                var listado = db.Query<tbUsuarios>(sql, parameters,commandType: CommandType.StoredProcedure).ToList();
+
+                //var result = new tbUsuarios();
+
+                //if (listado.Count > 0)
+                //{
+                //    result = listado.First();
+                //}
+
+                return listado;
+            }
+            //throw new NotImplementedException();
+        }
         public IEnumerable<tbUsuarios> List()
         {
             string sql = ScriptDataBase.Usuarios_Listar;

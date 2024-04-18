@@ -63,15 +63,16 @@ namespace InventarioSupermercado.Entities.Entities
         public int? Usuar_UsuarioModificacion { get; set; }
         public DateTime? Usuar_FechaModificacion { get; set; }
         public bool? Usuar_Estado { get; set; }
+
         [NotMapped]
         public string UsuarioCreacion { get; set; }
         [NotMapped]
         public string UsuarioModificacion { get; set; }
-        [NotMapped]
-        public string empleado { get; set; }
+    
         [NotMapped]
         public string Roles_Descripcion { get; set; }
-
+        [NotMapped]
+        public string Perso_NombreCompleto { get; set; }
 
         public virtual tbEmpleados Emple { get; set; }
         public virtual tbRoles Roles { get; set; }

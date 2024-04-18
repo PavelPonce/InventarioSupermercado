@@ -33,6 +33,26 @@ namespace InventarioSupermercado.BusinessLogic.Services
                 return result.Error(ex.Message);
             }
         }
+        public ServiceResult LoginUser(string usuario, string contrasena)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _usuariosRepository.Login(usuario, contrasena);
+
+                if (lost.ToList().Count > 0)
+                {
+                    return result.Ok(lost);
+                }
+                else {
+                    return result.Error(lost);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
         public ServiceResult InsertUsuarios(tbUsuarios item)
         {
             var result = new ServiceResult();
@@ -117,7 +137,7 @@ namespace InventarioSupermercado.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var lost = _usuariosRepository.Details(Usuar_Id);
+                var lost = _usuariosRepository.find(Usuar_Id);
 
                 return result.Ok(lost);
 

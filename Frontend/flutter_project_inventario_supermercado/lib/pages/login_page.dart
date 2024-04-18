@@ -1,29 +1,38 @@
-import 'dart:convert';
+
 import 'package:day14/components/input_text.dart';
-import 'package:day14/pages/home_page.dart';
+import 'package:day14/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_svg/flutter_svg.dart';
+
 
 class LoginPage extends StatelessWidget {
-
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
-  final String url = "https://api.thecatapi.com/v1/categories";
-
-  Future<dynamic> Login() async{
-    final result = await http.get(Uri.parse(url));
-
-    if(result.statusCode == 200){
-      Navigator.push(
-        jsonDecode(result.body), 
-        MaterialPageRoute(builder: (context) => HomePage())
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
+
+    Future<dynamic> Login() async{
+      final String url = "https://localhost:44307/Usuario/Login/" + usernameController.text + "/" + passwordController.text;
+      final result = await http.get(Uri.parse(url));
+
+      if(result.statusCode == 200){
+        if(result.body.length > 0){
+          Navigator.push(
+            context, 
+            MaterialPageRoute(builder: (home) => HomePage())
+          );
+        }else{
+          Navigator.push(
+            context, 
+            MaterialPageRoute(builder: (home) => LoginPage())
+          );
+        }
+      }
+    }
+
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -40,13 +49,17 @@ class LoginPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 80,),
+            SizedBox(height: 25,),
             Padding(
               padding: EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  FadeInUp(duration: Duration(milliseconds: 1000), child: Text("Inicio de Sesión", style: TextStyle(color: Colors.white, fontSize: 40),)),
+                  Center(
+                    child: FadeInUp(duration: Duration(milliseconds: 1000), child: SvgPicture.asset('../../assets/images/logo.svg',width: 70.0,height: 70.0,)),
+                  ),
+                  SizedBox(height: 10,),
+                  FadeInUp(duration: Duration(milliseconds: 1000), child: Text("Inicio de Sesión", style: TextStyle(color: Colors.white, fontSize: 30),)),
                   SizedBox(height: 10,),
                   FadeInUp(duration: Duration(milliseconds: 1300), child: Text("Bienvenido", style: TextStyle(color: Colors.white, fontSize: 18),)),
                 ],
@@ -117,4 +130,5 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
+  
 }
