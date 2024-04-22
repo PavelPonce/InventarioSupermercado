@@ -15,6 +15,7 @@ namespace InventarioSupermercado.API.Controllers
     public class UsuarioController : Controller
     {
         private readonly AccesoService _accesoService;
+
         private readonly IMapper _mapper;
 
         public UsuarioController(AccesoService accesoService, IMapper mapper)
@@ -24,10 +25,91 @@ namespace InventarioSupermercado.API.Controllers
         }
 
         [HttpGet("List/Usuarios")]
-        public IActionResult ListCompraDetalle()
+        public IActionResult ListUsuarios()
         {
-            var list = _accesoService.ListUsuarios();
-            return Ok(list);
+            try
+            {
+                var usuarios = _accesoService.ListUsuarios();
+                return Ok(usuarios);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Error al obtener la lista de usuarios.");
+            }
+        }
+
+        [HttpGet("List/Roles")]
+        public IActionResult ListRol()
+        {
+            try
+            {
+                var usuarios = _accesoService.ListRol();
+                return Ok(usuarios);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Error al obtener la lista de roles.");
+            }
+        }
+
+
+        [HttpGet("List/Empleados")]
+        public IActionResult ListEmpleado()
+        {
+            try
+            {
+                var usuarios = _accesoService.ListEmpleado();
+                return Ok(usuarios);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Error al obtener la lista de roles.");
+            }
+        }
+
+
+        [HttpGet("List/EstadosCiviles")]
+        public IActionResult ListEstadosCiviles()
+        {
+            try
+            {
+                var usuarios = _accesoService.ListEstadosCiviles();
+                return Ok(usuarios);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Error al obtener la lista de roles.");
+            }
+        }
+
+
+        [HttpGet("List/Municipios")]
+        public IActionResult ListMunicipios()
+        {
+            try
+            {
+                var usuarios = _accesoService.ListMunicipios();
+                return Ok(usuarios);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Error al obtener la lista de roles.");
+            }
+        }
+
+
+        [HttpGet("List/ListadoPrueba")]
+        public IActionResult ListadoPrueba()
+        {
+            var data = new
+            {
+                usuarios = new[]
+                {
+                    new { Nombre = "Usuario1", Edad = 25, Email = "usuario1@example.com" },
+                    new { Nombre = "Usuario2", Edad = 30, Email = "usuario2@example.com" },
+                }
+            };
+            return Ok(data);
         }
         [HttpGet("Login/{usuario}/{contrasena}")]
         public IActionResult Login(string usuario, string contrasena)
@@ -38,21 +120,42 @@ namespace InventarioSupermercado.API.Controllers
         }
 
         [HttpPost("Insert/Usuarios")]
-        public IActionResult InsertCompraDetalle(UsuariosViewModel item)
+        public IActionResult InsertUsuarios(UsuariosViewModel item)
         {
-            var model = _mapper.Map<tbUsuarios>(item);
-            var modelo = new tbUsuarios()
+            try
             {
-                Usuar_Usuario = item.Usuar_Usuario,
-                Usuar_Contrasena = item.Usuar_Contrasena,
-                Emple_Id = item.Emple_Id,
-                Roles_Id = item.Roles_Id,
-                Usuar_Admin = item.Usuar_Admin,
-                Usuar_UltimaSesion = item.Usuar_UltimaSesion
-            };
-            var list = _accesoService.InsertUsuarios(modelo);
-            return Ok(list);
+                var model = _mapper.Map<tbUsuarios>(item);
+
+                var result = _accesoService.InsertUsuarios(model);
+
+                return Ok(result); 
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
+
+
+        [HttpPost("Insert/Clientes")]
+        public IActionResult InsertClientes(ClienteViewModel item)
+        {
+            try
+            {
+                var model = _mapper.Map<tbClientes>(item);
+
+                var result = _accesoService.InsertClientes(model);
+
+                return Ok(result); 
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message); 
+            }
+        }
+
+
+
 
         [HttpPut("Update/Usuarios")]
         public IActionResult UpdateCompraDetalle(UsuariosViewModel item)
@@ -60,16 +163,22 @@ namespace InventarioSupermercado.API.Controllers
             var model = _mapper.Map<tbUsuarios>(item);
             var modelo = new tbUsuarios()
             {
+                Usuar_Id = item.Usuar_Id, 
                 Usuar_Usuario = item.Usuar_Usuario,
                 Usuar_Contrasena = item.Usuar_Contrasena,
-                Emple_Id = item.Emple_Id,
+                Perso_Id = item.Perso_Id,
                 Roles_Id = item.Roles_Id,
                 Usuar_Admin = item.Usuar_Admin,
-                Usuar_UltimaSesion = item.Usuar_UltimaSesion
+                Usuar_Tipo = item.Usuar_Tipo, 
+                Usuar_UsuarioModificacion = item.Usuar_UsuarioModificacion, 
+                Usuar_FechaModificacion = item.Usuar_FechaModificacion 
             };
-            var list = _accesoService.UpdateUsuarios(modelo);
-            return Ok(list);
+            var result = _accesoService.UpdateUsuarios(modelo);
+          
+                return Ok("Usuario actualizado exitosamente");
+            
         }
+
 
         [HttpDelete("Delete/Usuarios")]
         public IActionResult DeleteCompraDetalle(int Usuar_Id)

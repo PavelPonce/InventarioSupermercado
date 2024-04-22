@@ -17,6 +17,10 @@ namespace InventarioSupermercado.API.Extensiones
             CreateMap<DepartamentosViewModel, tbDepartamentos>().ReverseMap();
             CreateMap<ComprasDetalleViewModel, tbComprasDetalle>().ReverseMap();
             CreateMap<UsuariosViewModel, tbUsuarios>().ReverseMap();
+            CreateMap<ClienteViewModel, tbClientes>().ReverseMap();
+            CreateMap<ProductosViewModel, tbProductos>().ReverseMap();
+
+
 
 
 

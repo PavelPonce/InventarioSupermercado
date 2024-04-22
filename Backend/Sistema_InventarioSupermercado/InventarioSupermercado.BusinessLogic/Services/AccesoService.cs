@@ -1,4 +1,5 @@
 ﻿using AHM.Total.Travel.BusinessLogic;
+using InventarioSupermercado.Common.Models;
 using InventarioSupermercado.DataAccess.Repository;
 using InventarioSupermercado.Entities.Entities;
 using System;
@@ -12,39 +13,111 @@ namespace InventarioSupermercado.BusinessLogic.Services
    public class AccesoService
     {
         private readonly UsuariosRepository _usuariosRepository;
+        private readonly ClientesRepository _clientesRepository;
 
 
-        public AccesoService(UsuariosRepository usuariosRepository)
+
+        public AccesoService(UsuariosRepository usuariosRepository, ClientesRepository clientesRepository)
         {
             _usuariosRepository = usuariosRepository;
+            _clientesRepository = clientesRepository;
+
         }
 
         #region Usuarios
-        public ServiceResult ListUsuarios()
+        public IEnumerable<UsuariosViewModel> ListUsuarios()
         {
-            var result = new ServiceResult();
             try
             {
-                var lost = _usuariosRepository.List();
-                return result.Ok(lost);
+                var usuarios = _usuariosRepository.List();
+                return usuarios;
             }
             catch (Exception ex)
             {
-                return result.Error(ex.Message);
+                Console.WriteLine($"errorrr: {ex.Message}");
+               
+                throw; 
             }
         }
-        public ServiceResult LoginUser(string usuario, string contrasena)
+
+
+        public IEnumerable<UsuariosViewModel> ListRol()
+        {
+            try
+            {
+                var usuarios = _usuariosRepository.ListRol();
+                return usuarios;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"errorrr: {ex.Message}");
+
+                throw;
+            }
+        }
+
+
+        public IEnumerable<UsuariosViewModel> ListEmpleado()
+        {
+            try
+            {
+                var usuarios = _usuariosRepository.LisEmpleado();
+                return usuarios;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"errorrr: {ex.Message}");
+
+                throw;
+            }
+        }
+
+
+
+        public IEnumerable<ClienteViewModel> ListEstadosCiviles()
+        {
+            try
+            {
+                var usuarios = _clientesRepository.ListEstadosCiviles();
+                return usuarios;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"errorrr: {ex.Message}");
+
+                throw;
+            }
+        }
+
+
+        public IEnumerable<ClienteViewModel> ListMunicipios()
+        {
+            try
+            {
+                var usuarios = _clientesRepository.ListMunicipios();
+                return usuarios;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"errorrr: {ex.Message}");
+
+                throw;
+            }
+        }
+
+
+        public ServiceResult InsertUsuarios(tbUsuarios item)
         {
             var result = new ServiceResult();
             try
             {
-                var lost = _usuariosRepository.Login(usuario, contrasena);
-
-                if (lost.ToList().Count > 0)
+                var lost = _usuariosRepository.Insert(item);
+                if (lost.CodeStatus > 0)
                 {
                     return result.Ok(lost);
                 }
-                else {
+                else
+                {
                     return result.Error(lost);
                 }
             }
@@ -53,12 +126,15 @@ namespace InventarioSupermercado.BusinessLogic.Services
                 return result.Error(ex.Message);
             }
         }
-        public ServiceResult InsertUsuarios(tbUsuarios item)
+
+
+
+        public ServiceResult InsertClientes(tbClientes item)
         {
             var result = new ServiceResult();
             try
             {
-                var lost = _usuariosRepository.Insert(item);
+                var lost = _clientesRepository.Insert(item);
                 if (lost.CodeStatus > 0)
                 {
                     return result.Ok(lost);
@@ -94,6 +170,7 @@ namespace InventarioSupermercado.BusinessLogic.Services
                 return result.Error(ex.Message);
             }
         }
+
 
         public ServiceResult DeleteUsuarios(int Usuar_Id)
         {
@@ -137,7 +214,7 @@ namespace InventarioSupermercado.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var lost = _usuariosRepository.find(Usuar_Id);
+                var lost = _usuariosRepository.Details(Usuar_Id);
 
                 return result.Ok(lost);
 

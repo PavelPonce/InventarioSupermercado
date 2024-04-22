@@ -32,6 +32,8 @@ namespace InventarioSupermercado.Entities.Entities
         public int? Emple_UsuarioModificacion { get; set; }
         public DateTime? Emple_FechaModificacion { get; set; }
         public bool? Emple_Estado { get; set; }
+        public int Perso_Id { get; set; }
+
 
         public virtual tbCargos Cargo { get; set; }
         public virtual tbUsuarios Emple_UsuarioCreacionNavigation { get; set; }
