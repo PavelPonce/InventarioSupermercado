@@ -15,6 +15,8 @@ namespace InventarioSupermercado.Entities.Entities
 
         public int Categ_Id { get; set; }
         public string Categ_Descripcion { get; set; }
+        public string Cate_ImagenUrl { get; set; }
+
         public int Categ_UsuarioCreacion { get; set; }
         public DateTime Categ_FechaCreacion { get; set; }
         public int? Categ_UsuarioModificacion { get; set; }

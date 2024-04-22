@@ -23,6 +23,10 @@ namespace InventarioSupermercado.BusinessLogic
             service.AddScoped<VentasDetalleRepository>();
             service.AddScoped<VentasEncabezadoRepository>();
             service.AddScoped<ContraeñaRepository>();
+            service.AddScoped<ClientesRepository>();
+            service.AddScoped<ProductosRepository>();
+
+
 
             InventarioSupermercadoContext.BuildConnectionString(conn);
         }
@@ -33,6 +37,8 @@ namespace InventarioSupermercado.BusinessLogic
             service.AddScoped<AccesoService>();
 
             service.AddScoped<CompraService>();
+            service.AddScoped<SupermercadoService>();
+
 
         }
     }

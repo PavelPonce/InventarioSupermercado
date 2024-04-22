@@ -47,15 +47,17 @@ namespace InventarioSupermercado.API
 
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowSpecificOrigin",
-                  builder =>
-                  {
-                      builder.WithOrigins("https://localhost:44346")
-                             .AllowAnyHeader()
-                             .AllowAnyMethod()
-                             .AllowAnyOrigin();
-                  });
+                options.AddPolicy("AllowAnyOrigin",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                               .AllowAnyHeader()
+                               .AllowAnyMethod();
+                    });
             });
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,7 +76,7 @@ namespace InventarioSupermercado.API
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseCors("AllowAnyOrigin");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

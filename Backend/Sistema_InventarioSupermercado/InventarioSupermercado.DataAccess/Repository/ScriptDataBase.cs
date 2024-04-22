@@ -36,6 +36,15 @@ namespace InventarioSupermercado.DataAccess.Repository
         public static string Productos_Buscar = "[Supr].[SP_Productos_Buscar]";
         public static string Productos_Actualizar = "[Supr].[SP_Productos_Modificar]";
         public static string Productos_Delete = "[Supr].[SP_Productos_Eliminar]";
+
+        //DDL
+        public static string Impuestos_ddl = "Gral.SP_Impuestos_DDL";
+        public static string Categorias_ddl = "Gral.SP_Categorias_DDL";
+        public static string Proveedores_ddl = "Gral.SP_Provedores_DDL";
+        public static string Sucursales_ddl = "Gral.SP_Sucursales_DDL";
+
+
+
         #endregion
 
 
@@ -60,11 +69,26 @@ namespace InventarioSupermercado.DataAccess.Repository
         #region usuarios
         public static string Usuarios_Insertar = "Acce.SP_Usuarios_Insertar";
         public static string Usuarios_Listar = "Acce.SP_Usuarios_Lista";
-        public static string Usuarios_Buscar = "[Venta].[SP_Usuarios_Buscar]";
+        public static string Usuarios_Buscar = "[Acce].[SP_Usuarios_Buscar]";
         public static string Usuarios_Actualizar = "[Acce].[SP_Usuarios_Modificar]";
         public static string Usuarios_ActualizarContra = "[Acce].[SP_Usuarios_ReestablecerContrasenia]";
         public static string Usuarios_Delete = "[Acce].[SP_Usuarios_Eliminar]";
+        public static string Usuarios_RolDDL = "Acce.SP_Roles_DropDownList";
+        public static string Usuarios_EmpleadoDDL = "Gral.SP_Empleados_DropDownList";
+        #endregion
+
+
+        #region Clientes
+        public static string Clientes_MunicipioDDL = "[Gral].[SP_Municipios_DropDownList]";
+        public static string Clientes_EstadoCivilDDL = "[Gral].[SP_EstadosCiviles_DropDownList]";
+        #endregion
+
+
+
+        #region Categorias
+        public static string Categorias_Listar = "Gral.SP_Categorias_Lista";
         #endregion
 
     }
+
 }

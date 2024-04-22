@@ -58,5 +58,12 @@ namespace InventarioSupermercado.Common.Models
         [Display(Name = "Rol")]
 
         public string Roles_Descripcion { get; set; }
+
+        [NotMapped]
+        [Display(Name = "Nombre Completo")]
+
+        public string Perso_NombreCompleto { get; set; }
+        public int Perso_Id { get; set; }
+        public bool Usuar_Tipo { get; set; }
     }
 }
