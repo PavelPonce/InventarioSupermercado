@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop_app/constants.dart';
-import 'package:shop_app/screens/favorite/favorite_screen.dart';
+//import 'package:shop_app/screens/favorite/favorite_screen.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/screens/profile/profile_screen.dart';
+import 'package:shop_app/screens/users/usuarios_index.dart';
 
 const Color inActiveIconColor = Color(0xFFB6B6B6);
 
@@ -27,10 +28,11 @@ class _InitScreenState extends State<InitScreen> {
 
   final pages = [
     const HomeScreen(),
-    const FavoriteScreen(),
-    const Center(
+    //const FavoriteScreen(),
+    /*const Center(
       child: Text("Chat"),
-    ),
+    ),*/
+    const UsersScreen(),
     const ProfileScreen()
   ];
 
@@ -39,6 +41,7 @@ class _InitScreenState extends State<InitScreen> {
     return Scaffold(
       body: pages[currentSelectedIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
         onTap: updateCurrentIndex,
         currentIndex: currentSelectedIndex,
         showSelectedLabels: false,
@@ -62,7 +65,7 @@ class _InitScreenState extends State<InitScreen> {
             ),
             label: "Home",
           ),
-          BottomNavigationBarItem(
+          /*BottomNavigationBarItem(
             icon: SvgPicture.asset(
               "assets/icons/Heart Icon.svg",
               colorFilter: const ColorFilter.mode(
@@ -78,8 +81,8 @@ class _InitScreenState extends State<InitScreen> {
               ),
             ),
             label: "Fav",
-          ),
-          BottomNavigationBarItem(
+          ),*/
+          /*BottomNavigationBarItem(
             icon: SvgPicture.asset(
               "assets/icons/Chat bubble Icon.svg",
               colorFilter: const ColorFilter.mode(
@@ -95,6 +98,23 @@ class _InitScreenState extends State<InitScreen> {
               ),
             ),
             label: "Chat",
+          ),*/
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              "assets/icons/User.svg",
+              colorFilter: const ColorFilter.mode(
+                inActiveIconColor,
+                BlendMode.srcIn,
+              ),
+            ),
+            activeIcon: SvgPicture.asset(
+              "assets/icons/User.svg",
+              colorFilter: const ColorFilter.mode(
+                kPrimaryColor,
+                BlendMode.srcIn,
+              ),
+            ),
+            label: "Home",
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(

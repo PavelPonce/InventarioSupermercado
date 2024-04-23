@@ -12,11 +12,11 @@ class SearchField extends StatelessWidget {
     return Form(
       child: TextFormField(
         onChanged: (value) {},
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           filled: true,
-          fillColor: kSecondaryColor.withOpacity(0.1),
+          fillColor: kPrimaryLightColor,
           contentPadding:
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           border: searchOutlineInputBorder,
           focusedBorder: searchOutlineInputBorder,
           enabledBorder: searchOutlineInputBorder,

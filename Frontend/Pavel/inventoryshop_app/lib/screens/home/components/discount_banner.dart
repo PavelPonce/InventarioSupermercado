@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 class DiscountBanner extends StatelessWidget {
   const DiscountBanner({
     Key? key,
+    this.imagePath, 
   }) : super(key: key);
+
+  final String? imagePath;
 
   @override
   Widget build(BuildContext context) {
@@ -15,24 +18,22 @@ class DiscountBanner extends StatelessWidget {
         vertical: 16,
       ),
       decoration: BoxDecoration(
-        color: const Color(0xFF4A3298),
         borderRadius: BorderRadius.circular(20),
       ),
-      child: const Text.rich(
-        TextSpan(
-          style: TextStyle(color: Colors.white),
-          children: [
-            TextSpan(text: "A Summer Surpise\n"),
-            TextSpan(
-              text: "Cashback 20%",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
+      child: Image.asset(
+        imagePath ?? '../../../assets/images/bannerPrueba.jpg', 
+        height: 200,
+        width: double.infinity,
+        fit: BoxFit.cover, 
       ),
     );
   }
+}
+
+void main() {
+  runApp(MaterialApp(
+    home: Scaffold(
+      body: DiscountBanner(imagePath: '../../../assets/bannerPrueba.jpg'), 
+    ),
+  ));
 }
