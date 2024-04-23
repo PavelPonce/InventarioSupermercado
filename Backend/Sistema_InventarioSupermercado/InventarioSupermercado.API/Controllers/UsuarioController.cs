@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace InventarioSupermercado.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UsuarioController : Controller
     {
         private readonly AccesoService _accesoService;

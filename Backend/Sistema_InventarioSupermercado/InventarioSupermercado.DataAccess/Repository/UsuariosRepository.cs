@@ -156,19 +156,27 @@ namespace InventarioSupermercado.DataAccess.Repository
                 });
             }
         }
-        //public IEnumerable<tbUsuarios> Login(string Usuario, string Contra)
-        //{
-        //    string sql = ScriptDataBase.Usuario_Login;
+        public tbUsuarios Login(string Usuario, string Contra)
+        {
+            string sql = ScriptDataBase.Usuarios_Login;
 
-        //    List<tbUsuarios> result = new List<tbUsuarios>();
+            List<tbUsuarios> result = new List<tbUsuarios>();
 
-        //    using (var db = new SqlConnection(InventarioSupermercadoContext.ConnectionString))
-        //    {
-        //        var parameters = new { @Usuario = Usuario, @Contra = Contra };
-        //        result = db.Query<tbUsuarios>(sql, parameters, commandType: CommandType.StoredProcedure).ToList();
-        //        return result;
-        //    }
-        //}
+            using (var db = new SqlConnection(InventarioSupermercadoContext.ConnectionString))
+            {
+                var parameters = new { @Usuario = Usuario, @Contrasena = Contra };
+                result = db.Query<tbUsuarios>(sql, parameters, commandType: CommandType.StoredProcedure).ToList();
+
+                var list = new tbUsuarios();
+
+                if(result.Count > 0)
+                {
+                    list = result.First();
+                }
+
+                return list;
+            }
+        }
 
         public RequestStatus Update(tbUsuarios item)
         {

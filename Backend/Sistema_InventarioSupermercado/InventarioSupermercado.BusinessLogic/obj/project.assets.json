@@ -6127,19 +6127,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\LAB2\\.nuget\\packages\\": {}
+    "C:\\Users\\pavel\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LAB2\\Desktop\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.BusinessLogic\\InventarioSupermercado.BusinessLogic.csproj",
+      "projectUniqueName": "C:\\Users\\pavel\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.BusinessLogic\\InventarioSupermercado.BusinessLogic.csproj",
       "projectName": "InventarioSupermercado.BusinessLogic",
-      "projectPath": "C:\\Users\\LAB2\\Desktop\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.BusinessLogic\\InventarioSupermercado.BusinessLogic.csproj",
-      "packagesPath": "C:\\Users\\LAB2\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LAB2\\Desktop\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.BusinessLogic\\obj\\",
+      "projectPath": "C:\\Users\\pavel\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.BusinessLogic\\InventarioSupermercado.BusinessLogic.csproj",
+      "packagesPath": "C:\\Users\\pavel\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\pavel\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.BusinessLogic\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\LAB2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\pavel\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6153,8 +6153,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\LAB2\\Desktop\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.DataAccess\\InventarioSupermercado.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\LAB2\\Desktop\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.DataAccess\\InventarioSupermercado.DataAccess.csproj"
+            "C:\\Users\\pavel\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.DataAccess\\InventarioSupermercado.DataAccess.csproj": {
+              "projectPath": "C:\\Users\\pavel\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.DataAccess\\InventarioSupermercado.DataAccess.csproj"
             }
           }
         }

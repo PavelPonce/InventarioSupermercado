@@ -34,3 +34,15 @@ C:\Users\LAB2\Desktop\InventarioSupermercado\Backend\Sistema_InventarioSupermerc
 C:\Users\LAB2\Desktop\InventarioSupermercado\Backend\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\obj\Debug\net5.0\InventarioSupermercado.Entities.dll
 C:\Users\LAB2\Desktop\InventarioSupermercado\Backend\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\obj\Debug\net5.0\ref\InventarioSupermercado.Entities.dll
 C:\Users\LAB2\Desktop\InventarioSupermercado\Backend\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\obj\Debug\net5.0\InventarioSupermercado.Entities.pdb
+C:\Users\pavel\OneDrive\Escritorio\InventarioSupermercado\Backend\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\bin\Debug\net5.0\InventarioSupermercado.Entities.deps.json
+C:\Users\pavel\OneDrive\Escritorio\InventarioSupermercado\Backend\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\bin\Debug\net5.0\InventarioSupermercado.Entities.dll
+C:\Users\pavel\OneDrive\Escritorio\InventarioSupermercado\Backend\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\bin\Debug\net5.0\ref\InventarioSupermercado.Entities.dll
+C:\Users\pavel\OneDrive\Escritorio\InventarioSupermercado\Backend\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\bin\Debug\net5.0\InventarioSupermercado.Entities.pdb
+C:\Users\pavel\OneDrive\Escritorio\InventarioSupermercado\Backend\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\obj\Debug\net5.0\InventarioSupermercado.Entities.csproj.AssemblyReference.cache
+C:\Users\pavel\OneDrive\Escritorio\InventarioSupermercado\Backend\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\obj\Debug\net5.0\InventarioSupermercado.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pavel\OneDrive\Escritorio\InventarioSupermercado\Backend\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\obj\Debug\net5.0\InventarioSupermercado.Entities.AssemblyInfoInputs.cache
+C:\Users\pavel\OneDrive\Escritorio\InventarioSupermercado\Backend\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\obj\Debug\net5.0\InventarioSupermercado.Entities.AssemblyInfo.cs
+C:\Users\pavel\OneDrive\Escritorio\InventarioSupermercado\Backend\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\obj\Debug\net5.0\InventarioSupermercado.Entities.csproj.CoreCompileInputs.cache
+C:\Users\pavel\OneDrive\Escritorio\InventarioSupermercado\Backend\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\obj\Debug\net5.0\InventarioSupermercado.Entities.dll
+C:\Users\pavel\OneDrive\Escritorio\InventarioSupermercado\Backend\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\obj\Debug\net5.0\ref\InventarioSupermercado.Entities.dll
+C:\Users\pavel\OneDrive\Escritorio\InventarioSupermercado\Backend\Sistema_InventarioSupermercado\InventarioSupermercado.Entities\obj\Debug\net5.0\InventarioSupermercado.Entities.pdb
