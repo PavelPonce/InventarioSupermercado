@@ -1,15 +1,14 @@
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
 
 class ProductsScreen extends StatefulWidget {
   static String routeName = "/products";
 
   final int categoryId;
+  final int clientId; // Definir clientId con valor por defecto
 
-  const ProductsScreen({Key? key, required this.categoryId}) : super(key: key);
+  const ProductsScreen({Key? key, required this.categoryId, this.clientId = 5}) : super(key: key); // Asignar valor por defecto a clientId
 
   @override
   _ProductsScreenState createState() => _ProductsScreenState();
@@ -63,8 +62,11 @@ class _ProductsScreenState extends State<ProductsScreen> {
                 return ProductCard(
                   title: product['produ_Descripcion'] ?? '',
                   subtitle: product['unida_Descripcion'] ?? '',
-                  productId: product['produ_Id'], 
-
+                  productId: product['produ_Id'],
+                  clientId: widget.clientId, // Pasar el clientId al ProductCard
+                  onAddToCart: (productId, clientId) { // Definir una función callback para agregar al carrito
+                    agregarAlCarrito(context, productId, clientId);
+                  },
                 );
               },
             );
@@ -78,19 +80,21 @@ class _ProductsScreenState extends State<ProductsScreen> {
 class ProductCard extends StatelessWidget {
   final String title;
   final String subtitle;
-  final int productId; 
+  final int productId;
+  final int clientId;
+  final void Function(int, int) onAddToCart; // Definir función de callback para agregar al carrito
 
   const ProductCard({
     Key? key,
     required this.title,
     required this.subtitle,
-    required this.productId, 
+    required this.productId,
+    required this.clientId,
+    required this.onAddToCart, // Agregar la función de callback
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final int clien_Id = 5; // Definir clien_Id como un valor duro igual a 5
-
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -148,7 +152,7 @@ class ProductCard extends StatelessWidget {
                   children: [
                     TextButton(
                       onPressed: () {
-                        agregarAlCarrito(context, productId); // Pasar clien_Id como parámetro
+                        onAddToCart(productId, clientId); // Llamar a la función de callback con los parámetros requeridos
                       },
                       child: Row(
                         children: [
@@ -177,35 +181,47 @@ class ProductCard extends StatelessWidget {
   }
 }
 
-
-Future<void> agregarAlCarrito(BuildContext context, int productId) async {
+Future<void> agregarAlCarrito(BuildContext context, int productId, int clientId) async {
   try {
+    final url = Uri.parse('https://localhost:44307/Insert/Encabezado');
+
     final response = await http.post(
-      Uri.parse('https://localhost:44307/Insert/Encabezado'),
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: {
-        'Sucur_Id': '1',
-        'Venen_FechaPedido': DateTime.now().toString(),
-        'Venen_UsuarioCreacion': '1',
-        'Clien_Id': '5',
-        'Produ_Id': productId.toString(),
-        'Vende_Cantidad': '1',
-      },
+      url,
+      headers: {"Content-Type": "application/json"},
+      body: jsonEncode({
+        "Sucur_Id": 1,
+        "Venen_UsuarioCreacion": 1,
+        "Clien_Id": clientId,
+        "Produ_Id": productId,
+        "Vende_Cantidad": 1,
+      }),
     );
 
+    print("Respuesta recibida: ${response.statusCode}");
+    print("Cuerpo de la respuesta: ${response.body}");
+
     if (response.statusCode == 200) {
-      print('Response:');
-      print(response.body);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Producto agregado al carrito')),
+        SnackBar(
+          content: Text("Venta creada exitosamente"),
+          backgroundColor: Colors.green,
+        ),
       );
     } else {
-      throw Exception('Error al agregar el producto al carrito');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Error al crear la venta"),
+          backgroundColor: Colors.red,
+        ),
+      );
     }
-  } catch (error) {
-    print('Error: $error');
+  } catch (e) {
+    print("Error: $e");
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Error al agregar el producto al carrito')),
+      SnackBar(
+        content: Text("Error: $e"),
+        backgroundColor: Colors.red,
+      ),
     );
   }
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+// import 'package:shop_app/screens/products/products_screen.dart';
 import 'components/categories.dart';
 import 'components/discount_banner.dart';
 import 'components/home_header.dart';
-import 'components/popular_product.dart';
+// import 'components/popular_product.dart';
 import 'components/special_offers.dart';
-import 'usuarios_index.dart';
+// import 'usuarios_index.dart';
 
 class HomeScreen extends StatelessWidget {
   static String routeName = "/home";
@@ -23,7 +24,7 @@ class HomeScreen extends StatelessWidget {
               Categories(),
               SpecialOffers(),
               SizedBox(height: 20),
-              PopularProducts(),
+              // ProductsScreen(),
               SizedBox(height: 20),
             ],
           ),

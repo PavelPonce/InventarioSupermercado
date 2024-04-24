@@ -21,8 +21,8 @@ class DiscountBanner extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       child: Image.asset(
-        imagePath ?? 'assets/images/bannerPrueba.jpg', 
-        height: 110,
+        imagePath ?? 'assets/bannerPrueba.jpg', 
+        height: 100,
         width: double.infinity,
         fit: BoxFit.cover, 
       ),
@@ -33,7 +33,7 @@ class DiscountBanner extends StatelessWidget {
 void main() {
   runApp(MaterialApp(
     home: Scaffold(
-      body: DiscountBanner(imagePath: 'assets/images/bannerPrueba.jpg'), 
+      body: DiscountBanner(imagePath: 'assets/bannerPrueba.jpg'), 
     ),
   ));
 }

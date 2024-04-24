@@ -27,14 +27,17 @@ class ProductCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AspectRatio(
-              aspectRatio: 1.02,
+              aspectRatio: aspectRetio,
               child: Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: kSecondaryColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Image.asset(product.images[0]),
+                child: Image.asset(
+                  product.images[0],
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             const SizedBox(height: 8),
@@ -43,37 +46,31 @@ class ProductCard extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyMedium,
               maxLines: 2,
             ),
+            const SizedBox(height: 4),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   "\$${product.price}",
                   style: const TextStyle(
-                    fontSize: 14,
+                    fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: kPrimaryColor,
                   ),
                 ),
                 InkWell(
-                  borderRadius: BorderRadius.circular(50),
                   onTap: () {},
+                  borderRadius: BorderRadius.circular(50),
                   child: Container(
-                    padding: const EdgeInsets.all(6),
-                    height: 24,
-                    width: 24,
+                    padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: product.isFavourite
-                          ? kPrimaryColor.withOpacity(0.15)
-                          : kSecondaryColor.withOpacity(0.1),
+                      color: kPrimaryColor.withOpacity(0.15),
                       shape: BoxShape.circle,
                     ),
                     child: SvgPicture.asset(
                       "assets/icons/Heart Icon_2.svg",
-                      colorFilter: ColorFilter.mode(
-                          product.isFavourite
-                              ? const Color(0xFFFF4848)
-                              : const Color(0xFFDBDEE4),
-                          BlendMode.srcIn),
+                      color: kPrimaryColor,
+                      height: 16,
                     ),
                   ),
                 ),

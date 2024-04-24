@@ -1,12 +1,41 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:shop_app/screens/products/products_screen.dart';
+import 'package:http/http.dart' as http;
+// import 'package:shop_app/screens/products/products_screen.dart';
 
 import 'section_title.dart';
 
-class SpecialOffers extends StatelessWidget {
-  const SpecialOffers({
-    Key? key,
-  }) : super(key: key);
+class SpecialOffers extends StatefulWidget {
+  const SpecialOffers({Key? key}) : super(key: key);
+
+  @override
+  _SpecialOffersState createState() => _SpecialOffersState();
+}
+
+class _SpecialOffersState extends State<SpecialOffers> {
+  List<Category> categories = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchCategories();
+  }
+
+  Future<void> fetchCategories() async {
+    final response =
+        await http.get(Uri.parse('https://localhost:44307/api/Productos/List/Categoriasss'));
+
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      setState(() {
+        categories = data.map((json) => Category.fromJson(json)).toList();
+      });
+    } else {
+      throw Exception('Failed to load categories');
+    }
+  }
+static const String productsRoute = '/products';
 
   @override
   Widget build(BuildContext context) {
@@ -22,25 +51,23 @@ class SpecialOffers extends StatelessWidget {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: [
-              SpecialOfferCard(
-                image: "assets/images/Image Banner 2.png",
-                category: "Smartphone",
-                numOfBrands: 18,
-                press: () {
-                  Navigator.pushNamed(context, ProductsScreen.routeName);
-                },
-              ),
-              SpecialOfferCard(
-                image: "assets/images/Image Banner 3.png",
-                category: "Fashion",
-                numOfBrands: 24,
-                press: () {
-                  Navigator.pushNamed(context, ProductsScreen.routeName);
-                },
-              ),
-              const SizedBox(width: 20),
-            ],
+            children: categories
+                .map(
+                  (category) => SpecialOfferCard(
+                    category: category.categDescripcion,
+                    categoryId: category.categId,
+                    press: () {
+       Navigator.pushNamed(
+  context,
+  productsRoute,
+  arguments: {'categoryId': category.categId},
+);
+
+
+                    },
+                  ),
+                )
+                .toList(),
           ),
         ),
       ],
@@ -52,13 +79,12 @@ class SpecialOfferCard extends StatelessWidget {
   const SpecialOfferCard({
     Key? key,
     required this.category,
-    required this.image,
-    required this.numOfBrands,
+    required this.categoryId,
     required this.press,
   }) : super(key: key);
 
-  final String category, image;
-  final int numOfBrands;
+  final String category;
+  final int categoryId;
   final GestureTapCallback press;
 
   @override
@@ -70,54 +96,37 @@ class SpecialOfferCard extends StatelessWidget {
         child: SizedBox(
           width: 242,
           height: 100,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Stack(
-              children: [
-                Image.asset(
-                  image,
-                  fit: BoxFit.cover,
-                ),
-                Container(
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Colors.black54,
-                        Colors.black38,
-                        Colors.black26,
-                        Colors.transparent,
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 15,
-                    vertical: 10,
-                  ),
-                  child: Text.rich(
-                    TextSpan(
-                      style: const TextStyle(color: Colors.white),
-                      children: [
-                        TextSpan(
-                          text: "$category\n",
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        TextSpan(text: "$numOfBrands Brands")
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+          child: Card(
+            color: Colors.grey[300],
+            child: Center(
+              child: Text(
+                category,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class Category {
+  final int categId;
+  final String categDescripcion;
+  final String cateImagenUrl;
+
+  Category({
+    required this.categId,
+    required this.categDescripcion,
+    required this.cateImagenUrl,
+  });
+
+  factory Category.fromJson(Map<String, dynamic> json) {
+    return Category(
+      categId: json['categ_Id'] ?? 0,
+      categDescripcion: json['categ_Descripcion'] ?? '',
+      cateImagenUrl: json['cate_ImagenUrl'] ?? '',
     );
   }
 }
