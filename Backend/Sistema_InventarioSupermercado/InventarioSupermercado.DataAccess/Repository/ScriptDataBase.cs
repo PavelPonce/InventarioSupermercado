@@ -89,6 +89,11 @@ namespace InventarioSupermercado.DataAccess.Repository
         public static string Categorias_Listar = "Gral.SP_Categorias_Lista";
         #endregion
 
+
+        #region sucursales
+        public static string Sucursales_Drop = "Supr.SP_Sucursales_DDL";
+        #endregion
+
     }
 
 }
