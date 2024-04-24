@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shop_app/constants.dart';
 //import 'package:shop_app/screens/products/products_screen.dart';
 
 import 'section_title.dart';
@@ -44,7 +45,7 @@ static const String productsRoute = '/products';
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: SectionTitle(
-            title: "Special for you",
+            title: "Categorías",
             press: () {},
           ),
         ),
@@ -97,7 +98,7 @@ class SpecialOfferCard extends StatelessWidget {
           width: 242,
           height: 100,
           child: Card(
-            color: Colors.grey[300],
+            color: kSecondaryColor,
             child: Center(
               child: Text(
                 category,

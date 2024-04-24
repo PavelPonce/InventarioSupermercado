@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:shop_app/screens/home/components/popular_product.dart';
 //import 'components/categories.dart';
-import 'components/discount_banner.dart';
+//import 'components/discount_banner.dart';
 import 'components/home_header.dart';
 //import 'components/popular_product.dart';
 import 'components/special_offers.dart';
@@ -33,11 +34,12 @@ class HomeScreen extends StatelessWidget {
             child: const Column(
               children: [
                 HomeHeader(),
-                DiscountBanner(),
+                //DiscountBanner(),
                 //Categories(),
+                SizedBox(height: 20),
                 SpecialOffers(),
                 //SizedBox(height: 20),
-                //PopularProducts(),
+                PopularProducts(),
                 //SizedBox(height: 20),
                 
               ],

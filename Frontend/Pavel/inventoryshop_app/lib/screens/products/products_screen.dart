@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:shop_app/screens/home/components/home_header.dart';
+import 'package:shop_app/constants.dart';
+//import 'package:shop_app/screens/home/components/home_header.dart';
 import 'dart:convert';
 
 class ProductsScreen extends StatefulWidget {
   static String routeName = "/products";
 
   final int categoryId;
+  final String categDescripcion;
 
-  const ProductsScreen({Key? key, required this.categoryId}) : super(key: key);
+  const ProductsScreen({Key? key, required this.categoryId, required this.categDescripcion}) : super(key: key);
 
   @override
   _ProductsScreenState createState() => _ProductsScreenState();
@@ -38,7 +40,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: HomeHeader(),
+        backgroundColor: kSecondaryColor,
         actions: [
           IconButton(
             onPressed: () {},
@@ -56,6 +58,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
           } else {
             final products = snapshot.data!;
             return GridView.builder(
+              padding: EdgeInsets.all(8.0),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: 16,

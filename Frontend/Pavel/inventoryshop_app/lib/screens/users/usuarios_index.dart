@@ -1,6 +1,10 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:http/http.dart' as http;
+import 'package:shop_app/constants.dart';
 import 'package:shop_app/screens/users/usuarios_create.dart'; 
 import 'package:shop_app/screens/users/usuarios_edit.dart'; 
 
@@ -77,35 +81,21 @@ class _UsersScreenState extends State<UsersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Listado de Usuarios"),
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
-        centerTitle: true,
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CrearUsuarioView()), 
-              );
-            },
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CrearUsuarioView()), 
-              );
-            },
-            child: Text('Crear Nuevo Usuario'),
-          ),
-          SingleChildScrollView(
+
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        decoration: BoxDecoration(
+          gradient: kMyPrimaryGradientColor,
+        ),
+        child:
+         Stack(
+          children: [
+          Column(
+            children: [
+               SvgPicture.asset('../../../assets/svg/logo.svg',width: 50.0,height: 50.0,),
+            const SizedBox(height: 10,),
+            SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: DataTable(
               headingTextStyle: TextStyle(
@@ -174,8 +164,33 @@ class _UsersScreenState extends State<UsersScreen> {
               }).toList(),
             ),
           ),
-        ],
+            ],
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+            padding: EdgeInsets.all(8),
+            child: FloatingActionButton(
+              backgroundColor: kPrimaryLightColor.withOpacity(0.6),
+              focusColor: kPrimaryLightColor.withOpacity(0.6),
+              child: Icon(
+                Icons.add,
+                color: kPrimaryLightColor,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CrearUsuarioView()), 
+                );
+              },            
+            ), 
+          ),
+          )
+         
+          ],
+        ),
       ),
+      
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:cache_manager/cache_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_app/constants.dart';
 import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
 
 import 'components/profile_menu.dart';
@@ -12,13 +13,17 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Profile"),
-      ),
-      body: SingleChildScrollView(
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          gradient: kMyPrimaryGradientColor,
+        ),
+        child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: Column(
           children: [
+            const Text("Profile"),
+            const SizedBox(height: 20),
             const ProfilePic(),
             const SizedBox(height: 20),
             ProfileMenu(
@@ -53,6 +58,7 @@ class ProfileScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
+      ),  
+      );
   }
 }

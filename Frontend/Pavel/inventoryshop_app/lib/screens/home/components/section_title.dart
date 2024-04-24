@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/constants.dart';
 
 class SectionTitle extends StatelessWidget {
   const SectionTitle({
@@ -25,8 +26,8 @@ class SectionTitle extends StatelessWidget {
         ),
         TextButton(
           onPressed: press,
-          style: TextButton.styleFrom(foregroundColor: Colors.grey),
-          child: const Text("See more"),
+          style: TextButton.styleFrom(foregroundColor: kPrimaryLightColor),
+          child: const Text("Ver más"),
         ),
       ],
     );
