@@ -45,8 +45,9 @@ class ProfileScreen extends StatelessWidget {
               text: "Cerrar Sesión",
               icon: "assets/icons/Log out.svg",
               press: () {
-                DeleteCache.deleteKey('cache',
-                  Navigator.of(context).pushNamed(SignInScreen.routeName));
+                DeleteCache.deleteKey('user');
+                DeleteCache.deleteKey('loggedIn',
+                  Navigator.of(context).pushNamedAndRemoveUntil(SignInScreen.routeName, (route)=>false));
               },
             ),
           ],

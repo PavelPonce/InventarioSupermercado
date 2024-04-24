@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shop_app/constants.dart';
 import '../../components/no_account_text.dart';
 import 'components/sign_form.dart';
 
@@ -14,14 +15,7 @@ class SignInScreen extends StatelessWidget {
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            colors: [
-              Colors.orange.shade900,
-              Colors.orange.shade800,
-              Colors.orange.shade400
-            ]
-          )
+          gradient: kMyPrimaryGradientColor,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

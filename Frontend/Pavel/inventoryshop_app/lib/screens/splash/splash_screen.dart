@@ -1,10 +1,7 @@
-import 'package:cache_manager/cache_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_app/screens/init_screen.dart';
 
 //import 'package:shop_app/screens/sign_in/components/sign_form.dart';
 //import 'package:shop_app/screens/sign_up/sign_up_screen.dart';
-import 'dart:async';  // This line is needed for Timer
 import '../../constants.dart';
 import '../sign_in/sign_in_screen.dart';
 import 'components/splash_content.dart';
@@ -18,28 +15,7 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
-  Future initiateCache() async{
-    CacheManagerUtils.conditionalCache(
-      key: 'cache', 
-      valueType: ValueType.StringValue,
-      actionIfNull: (){
-        Navigator.of(context).pushNamed(SignInScreen.routeName);
-        print('nocache');
-      }, 
-      actionIfNotNull: (){
-        Navigator.of(context).pushNamed(InitScreen.routeName);
-        print('cache');
-      }, 
-    );
-  }
-
-  @override
-  void initState(){
-    Timer(const Duration(seconds:3),initiateCache);
-    super.initState();
-  }
-  
+class _SplashScreenState extends State<SplashScreen> { 
   int currentPage = 0;
   List<Map<String, String>> splashData = [
     {

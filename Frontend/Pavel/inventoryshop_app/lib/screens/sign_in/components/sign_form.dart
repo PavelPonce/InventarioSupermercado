@@ -35,7 +35,8 @@ class _SignFormState extends State<SignForm> {
     if(result.statusCode == 200){
       final json = jsonDecode(result.body);
       if(json['code'] == 200){
-          WriteCache.setString(key: 'cache', value: json['data']['usuar_Id'].toString());
+          WriteCache.setJson(key: 'user', value: json['data']);
+          WriteCache.setBool(key: 'loggedIn', value: true);
           return true;
       }else{
         return false;
@@ -154,7 +155,7 @@ class _SignFormState extends State<SignForm> {
                     
                     bool isLoggedIn = await login(username.toString(), password.toString());
                     if (isLoggedIn) {
-                      Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                      Navigator.pushNamedAndRemoveUntil(context, LoginSuccessScreen.routeName, (route) => false);
                     } else {
                       addError(error: "Usuario o contraseña incorrectos");
                     }

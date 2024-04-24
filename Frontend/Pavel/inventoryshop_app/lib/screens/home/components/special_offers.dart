@@ -101,7 +101,7 @@ class SpecialOfferCard extends StatelessWidget {
             child: Center(
               child: Text(
                 category,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
           ),
