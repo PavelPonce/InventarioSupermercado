@@ -8,9 +8,9 @@ class ProductsScreen extends StatefulWidget {
   static String routeName = "/products";
 
   final int categoryId;
-  final String categDescripcion;
+  //final String categDescripcion;
 
-  const ProductsScreen({Key? key, required this.categoryId, required this.categDescripcion}) : super(key: key);
+  const ProductsScreen({Key? key, required this.categoryId/*, required this.categDescripcion*/}) : super(key: key);
 
   @override
   _ProductsScreenState createState() => _ProductsScreenState();
