@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace InventarioSupermercado.API.Controllers
 {
     [ApiController]
-    [Route("api/{controller}")]
+    [Route("api/[controller]")]
     public class GraficoController : Controller
     {
         private readonly GraficoServices _graficoServices;
@@ -43,7 +43,7 @@ namespace InventarioSupermercado.API.Controllers
 
             return Ok(listado);
         }
-        [HttpGet("Grafico3")]
+        [HttpGet("Grafico4")]
         public IActionResult Grafico4()
         {
             var listado = _graficoServices.TotalGanancia();

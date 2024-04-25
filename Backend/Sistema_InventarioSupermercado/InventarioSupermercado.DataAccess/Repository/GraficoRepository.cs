@@ -20,7 +20,7 @@ namespace InventarioSupermercado.DataAccess.Repository
 
             using (var db = new SqlConnection(InventarioSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbGraficos>(sql, commandType: CommandType.Text).ToList();
+                result = db.Query<tbGraficos>(sql, commandType: CommandType.StoredProcedure).ToList();
 
                 return result;
             }
@@ -33,7 +33,7 @@ namespace InventarioSupermercado.DataAccess.Repository
 
             using (var db = new SqlConnection(InventarioSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbGraficos>(sql, commandType: CommandType.Text).ToList();
+                result = db.Query<tbGraficos>(sql, commandType: CommandType.StoredProcedure).ToList();
 
                 return result;
             }
@@ -46,7 +46,7 @@ namespace InventarioSupermercado.DataAccess.Repository
 
             using (var db = new SqlConnection(InventarioSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbGraficos>(sql, commandType: CommandType.Text).ToList();
+                result = db.Query<tbGraficos>(sql, commandType: CommandType.StoredProcedure).ToList();
 
                 return result;
             }
@@ -60,7 +60,7 @@ namespace InventarioSupermercado.DataAccess.Repository
 
             using (var db = new SqlConnection(InventarioSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbGraficos>(sql, commandType: CommandType.Text).ToList();
+                result = db.Query<tbGraficos>(sql, commandType: CommandType.StoredProcedure).ToList();
 
                 return result;
             }

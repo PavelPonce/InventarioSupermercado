@@ -21,11 +21,7 @@ namespace InventarioSupermercado.API.Extensiones
             CreateMap<ProductosViewModel, tbProductos>().ReverseMap();
             CreateMap<VentasEncabezadoViewModel, tbVentasEncabezado>().ReverseMap();
             CreateMap<VentasDetalleViewModel, tbVentasDetalle>().ReverseMap();
-
-
-
-
-
+            CreateMap<GraficosViewModel, tbGraficos>().ReverseMap();
 
 
         }

@@ -5,24 +5,28 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:http/http.dart' as http;
+import 'package:shop_app/utilities/api_endpoints.dart';
 
 class DashboardScreen extends StatelessWidget {
   static String routeName = '/dashboard';
 
   const DashboardScreen({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 16.0, bottom: 16.0), // Ajusta el espacio como necesites
+              padding: const EdgeInsets.only(
+                  top: 16.0, bottom: 16.0), // Ajusta el espacio como necesites
               child: Text(
                 'Dashboard',
-                style: Theme.of(context).textTheme.headline5?.copyWith(fontWeight: FontWeight.bold),
+                style: Theme.of(context)
+                    .textTheme
+                    .headline5
+                    ?.copyWith(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center, // Esto centrará el texto
               ),
             ),
@@ -33,14 +37,16 @@ class DashboardScreen extends StatelessWidget {
             SizedBox(height: 5),
             Divider(
               color: Colors.grey.shade600,
-              indent: 32, // Inicio del divisor con espacio desde el borde izquierdo
-              endIndent: 32, // Final del divisor con espacio desde el borde derecho
-            ), // Línea divisoria entre cards            
+              indent:
+                  32, // Inicio del divisor con espacio desde el borde izquierdo
+              endIndent:
+                  32, // Final del divisor con espacio desde el borde derecho
+            ), // Línea divisoria entre cards
             Container(
-            height: 400,
-            child: EmployeeCountBarChart(),
-          ),
-          
+              height: 400,
+              child: EmployeeCountBarChart(),
+            ),
+
             SizedBox(height: 5),
 
             Divider(color: Colors.grey.shade600, indent: 32, endIndent: 32),
@@ -50,9 +56,10 @@ class DashboardScreen extends StatelessWidget {
               child: TopMealsChart(),
             ),
             Divider(color: Colors.grey.shade600, indent: 32, endIndent: 32),
- // Línea divisoria entre cards
+            // Línea divisoria entre cards
             AspectRatio(
-              aspectRatio: 1, // Este es un ejemplo, ajusta la relación según necesites
+              aspectRatio:
+                  1, // Este es un ejemplo, ajusta la relación según necesites
               child: DepartmentClientsChart(),
             ),
           ],
@@ -104,26 +111,28 @@ class ClienteDepartamento {
   }
 }
 
-
 //-----------------------------------------------------------dashboard de generos por empleado
 
 class GenderStatisticsCard extends StatelessWidget {
-  final String genderStatisticsUrl = 'http://www.restaurante.somee.com/Api/Empleado/EmplGenero';
+  Future<Map<String, dynamic>> grafico1() async {
+    var url = Uri.parse(
+      ApiEndPoint.baseUrl + ApiEndPoint.graficoEndPoints.grafico1,
+    );
 
-  Future<Map<String, dynamic>> fetchGenderStatistics() async {
-    final response = await http.get(Uri.parse(genderStatisticsUrl));
+    final response = await http.get(url);
+
     if (response.statusCode == 200) {
-      final Map<String, dynamic> decodedResponse = json.decode(response.body);
-      if (decodedResponse['success'] == true) {
-        return decodedResponse['data'];
+      final json = jsonDecode(response.body);
+      if (json['code'] == 200) {
+        return json['data'];
       } else {
-        throw Exception('Failed to load gender statistics: ${decodedResponse['message']}');
+        throw Exception('Failed to load gender statistics: ${json['message']}');
       }
     } else {
-      throw Exception('Failed to load gender statistics with status code: ${response.statusCode}');
+      throw Exception(
+          'Failed to load gender statistics with status code: ${response.statusCode}');
     }
   }
-
 
   const GenderStatisticsCard({
     Key? key,
@@ -132,8 +141,9 @@ class GenderStatisticsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Map<String, dynamic>>(
-      future: fetchGenderStatistics(),
-      builder: (BuildContext context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
+      future: grafico1(),
+      builder:
+          (BuildContext context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
@@ -142,15 +152,18 @@ class GenderStatisticsCard extends StatelessWidget {
           return Text("No data available");
         } else {
           final data = snapshot.data!;
-    final int maleCount = data['cantidadMasculino'] as int? ?? 0; // Usa las claves correctas del JSON
-    final int femaleCount = data['cantidadFemenino'] as int? ?? 0;
-          return createGenderStatisticsChart(context, maleCount, femaleCount); // Pasando context aquí
+          final int maleCount = data['cantidadMasculino'] as int? ??
+              0; // Usa las claves correctas del JSON
+          final int femaleCount = data['cantidadFemenino'] as int? ?? 0;
+          return createGenderStatisticsChart(
+              context, maleCount, femaleCount); // Pasando context aquí
         }
       },
     );
   }
 
-  Widget createGenderStatisticsChart(BuildContext context, int maleCount, int femaleCount) {
+  Widget createGenderStatisticsChart(
+      BuildContext context, int maleCount, int femaleCount) {
     final total = maleCount + femaleCount;
     final double malePercentage = total > 0 ? (maleCount / total) * 100 : 0;
     final double femalePercentage = total > 0 ? (femaleCount / total) * 100 : 0;
@@ -182,8 +195,7 @@ class GenderStatisticsCard extends StatelessWidget {
                       titleStyle: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white
-                      ),
+                          color: Colors.white),
                     ),
                     PieChartSectionData(
                       color: Colors.pink,
@@ -194,8 +206,7 @@ class GenderStatisticsCard extends StatelessWidget {
                       titleStyle: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white
-                      ),
+                          color: Colors.white),
                     ),
                   ],
                 ),
@@ -209,7 +220,10 @@ class GenderStatisticsCard extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     'Estadística de Empleados por género',
-                    style: Theme.of(context).textTheme.headline6?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline6
+                        ?.copyWith(fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 4),
                   Text(
@@ -225,7 +239,6 @@ class GenderStatisticsCard extends StatelessWidget {
                     height: 9,
                     width: double.infinity,
                     color: Colors.orange,
-                    
                   ),
                 ],
               ),
@@ -236,11 +249,12 @@ class GenderStatisticsCard extends StatelessWidget {
     );
   }
 }
-//-------------------------------------------------------------------------------------empleados por restaurante 
+
+//-------------------------------------------------------------------------------------empleados por restaurante
 // Widget para mostrar el gráfico de barras de empleados por restaurante
 class EmployeeCountBarChart extends StatelessWidget {
-  final String employeeCountUrl = 'http://www.restaurante.somee.com/Api/Empleado/EmplRestaurante';
-
+  final String employeeCountUrl =
+      'http://www.restaurante.somee.com/Api/Empleado/EmplRestaurante';
 
   Future<List<Map<String, dynamic>>> fetchEmployeeCountByRestaurant() async {
     final response = await http.get(Uri.parse(employeeCountUrl));
@@ -255,10 +269,12 @@ class EmployeeCountBarChart extends StatelessWidget {
           return [decodedResponse['data']];
         }
       } else {
-        throw Exception('Failed to load employee count: ${decodedResponse['message']}');
+        throw Exception(
+            'Failed to load employee count: ${decodedResponse['message']}');
       }
     } else {
-      throw Exception('Failed to load data with status code: ${response.statusCode}');
+      throw Exception(
+          'Failed to load data with status code: ${response.statusCode}');
     }
   }
 
@@ -282,7 +298,8 @@ class EmployeeCountBarChart extends StatelessWidget {
           for (var restaurantData in data) {
             final String name = restaurantData['nombre_Restaurante'];
             final int count = restaurantData['cantidad_Empleados'];
-            final Color barColor = Colors.primaries[index % Colors.primaries.length];
+            final Color barColor =
+                Colors.primaries[index % Colors.primaries.length];
             barGroups.add(BarChartGroupData(
               x: index,
               barRods: [
@@ -302,7 +319,8 @@ class EmployeeCountBarChart extends StatelessWidget {
             return Center(child: Text("No restaurant data available"));
           }
           return Card(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
             color: Color.fromARGB(255, 255, 255, 255),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -314,7 +332,10 @@ class EmployeeCountBarChart extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 16.0),
                       child: Text(
                         'Estadísticas de Empleados por Restaurante',
-                        style: Theme.of(context).textTheme.headline6?.copyWith(fontWeight: FontWeight.bold),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6
+                            ?.copyWith(fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -323,11 +344,17 @@ class EmployeeCountBarChart extends StatelessWidget {
                     child: BarChart(
                       BarChartData(
                         alignment: BarChartAlignment.spaceBetween,
-                        maxY: barGroups.map((bg) => bg.barRods.first.y).reduce(max) + 5,
+                        maxY: barGroups
+                                .map((bg) => bg.barRods.first.y)
+                                .reduce(max) +
+                            5,
                         barTouchData: BarTouchData(
                           touchTooltipData: BarTouchTooltipData(
                             tooltipBgColor: Colors.white,
-                            getTooltipItem: (BarChartGroupData group, int groupIndex, BarChartRodData rod, int rodIndex) {
+                            getTooltipItem: (BarChartGroupData group,
+                                int groupIndex,
+                                BarChartRodData rod,
+                                int rodIndex) {
                               return BarTooltipItem(
                                 '${rod.y}',
                                 TextStyle(
@@ -372,7 +399,8 @@ class EmployeeCountBarChart extends StatelessWidget {
 //-------------------------------------------------------------DASHBOARD DE TOP 5 COMIDAS
 // Widget para el gráfico de barras
 class TopMealsChart extends StatelessWidget {
-    final String topMealsUrl = 'http://www.restaurante.somee.com/Api/Plato/PlatosTop';
+  final String topMealsUrl =
+      'http://www.restaurante.somee.com/Api/Plato/PlatosTop';
 
   Future<List<PlatoTop>> fetchTopMeals() async {
     final response = await http.get(Uri.parse(topMealsUrl), headers: {
@@ -383,7 +411,8 @@ class TopMealsChart extends StatelessWidget {
       final jsonList = json.decode(response.body)['data'] as List;
       return jsonList.map((json) => PlatoTop.fromJson(json)).toList();
     } else {
-      throw Exception('Error al cargar los platos más vendidos: ${response.statusCode}');
+      throw Exception(
+          'Error al cargar los platos más vendidos: ${response.statusCode}');
     }
   }
 
@@ -396,28 +425,31 @@ class TopMealsChart extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
-    child: CircularProgressIndicator(
-      valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor), // Cambia el color aquí
-      strokeWidth: 5.0, // Cambia el grosor de la línea aquí
-      // Si quieres cambiar el tamaño, puedes envolverlo en un SizedBox:
-      // child: SizedBox(
-      //   width: 50, // Ancho del CircularProgressIndicator
-      //   height: 50, // Alto del CircularProgressIndicator
-      //   child: CircularProgressIndicator(...),
-      // ),
-    ),
-  );
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(
+                  Theme.of(context).primaryColor), // Cambia el color aquí
+              strokeWidth: 5.0, // Cambia el grosor de la línea aquí
+              // Si quieres cambiar el tamaño, puedes envolverlo en un SizedBox:
+              // child: SizedBox(
+              //   width: 50, // Ancho del CircularProgressIndicator
+              //   height: 50, // Alto del CircularProgressIndicator
+              //   child: CircularProgressIndicator(...),
+              // ),
+            ),
+          );
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else if (snapshot.hasData) {
           final topMeals = snapshot.data!;
-          final maxY = topMeals.fold(0, (prev, el) => max(prev, el.totalVendidos)).toDouble();
+          final maxY = topMeals
+              .fold(0, (prev, el) => max(prev, el.totalVendidos))
+              .toDouble();
 
           return Card(
             elevation: 3,
             color: const Color.fromARGB(255, 255, 255, 255),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -432,10 +464,8 @@ class TopMealsChart extends StatelessWidget {
                   const SizedBox(height: 24),
                   Expanded(
                     child: BarChart(
-                      
                       BarChartData(
                         alignment: BarChartAlignment.spaceAround,
-                        
                         maxY: maxY,
                         titlesData: FlTitlesData(
                           bottomTitles: SideTitles(
@@ -460,7 +490,10 @@ class TopMealsChart extends StatelessWidget {
                             barRods: [
                               BarChartRodData(
                                 y: plato.totalVendidos.toDouble(),
-                                colors: [Color.fromARGB(255, 238, 164, 104), Color.fromARGB(255, 226, 120, 21)],
+                                colors: [
+                                  Color.fromARGB(255, 238, 164, 104),
+                                  Color.fromARGB(255, 226, 120, 21)
+                                ],
                                 borderRadius: BorderRadius.circular(4),
                                 width: 40,
                               ),
@@ -485,35 +518,39 @@ class TopMealsChart extends StatelessWidget {
 //---------------------------------------------DASBOARD DE CLIENTES POR DEPARTAMENTOS
 
 class DepartmentClientsChart extends StatelessWidget {
-    final String clientesPorDepartamentoUrl = 'http://www.restaurante.somee.com/Api/Cliente/Clien_Departamento';
+  final String clientesPorDepartamentoUrl =
+      'http://www.restaurante.somee.com/Api/Cliente/Clien_Departamento';
 
   Future<List<ClienteDepartamento>> fetchClientesPorDepartamento() async {
-  final response = await http.get(
-    Uri.parse(clientesPorDepartamentoUrl),
-    headers: {
-      'Accept': 'application/json',
-    },
-  );
+    final response = await http.get(
+      Uri.parse(clientesPorDepartamentoUrl),
+      headers: {
+        'Accept': 'application/json',
+      },
+    );
 
-  if (response.statusCode == 200) {
-    // Verificamos que el cuerpo de la respuesta no sea nulo
-    if (response.body == "") {
-      throw Exception('El cuerpo de la respuesta está vacío');
+    if (response.statusCode == 200) {
+      // Verificamos que el cuerpo de la respuesta no sea nulo
+      if (response.body == "") {
+        throw Exception('El cuerpo de la respuesta está vacío');
+      }
+
+      final Map<String, dynamic> parsed = json.decode(response.body);
+
+      // Verificamos que el JSON contenga la llave 'data'
+      if (!parsed.containsKey('data') || parsed['data'] == null) {
+        throw Exception('El JSON no contiene la llave \'data\' o es nula');
+      }
+
+      final jsonList = parsed['data'] as List;
+      return jsonList
+          .map((json) => ClienteDepartamento.fromJson(json))
+          .toList();
+    } else {
+      throw Exception(
+          'Error al cargar los clientes por departamento: ${response.statusCode}');
     }
-
-    final Map<String, dynamic> parsed = json.decode(response.body);
-    
-    // Verificamos que el JSON contenga la llave 'data'
-    if (!parsed.containsKey('data') || parsed['data'] == null) {
-      throw Exception('El JSON no contiene la llave \'data\' o es nula');
-    }
-
-    final jsonList = parsed['data'] as List;
-    return jsonList.map((json) => ClienteDepartamento.fromJson(json)).toList();
-  } else {
-    throw Exception('Error al cargar los clientes por departamento: ${response.statusCode}');
   }
-}
 
   DepartmentClientsChart({Key? key}) : super(key: key);
 
@@ -560,7 +597,8 @@ class DepartmentClientsChart extends StatelessWidget {
             child: Card(
               elevation: 4,
               margin: const EdgeInsets.all(8.0),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18)),
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: Column(
@@ -568,7 +606,8 @@ class DepartmentClientsChart extends StatelessWidget {
                   children: [
                     const Text(
                       'Estadisticas de clientes por Departamento',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 18),
@@ -585,7 +624,9 @@ class DepartmentClientsChart extends StatelessWidget {
                       alignment: WrapAlignment.start,
                       spacing: 8,
                       children: data.keys.map((department) {
-                        final color = Colors.primaries[data.keys.toList().indexOf(department) % Colors.primaries.length];
+                        final color = Colors.primaries[
+                            data.keys.toList().indexOf(department) %
+                                Colors.primaries.length];
                         return Padding(
                           padding: const EdgeInsets.all(4.0),
                           child: Row(
