@@ -29,8 +29,17 @@ final Map<String, WidgetBuilder> routes = {
   OtpScreen.routeName: (context) => const OtpScreen(),
   HomeScreen.routeName: (context) => const HomeScreen(),
   MyWidget.routeName: (context) => const MyWidget(),
-  ProductsScreen.routeName: (context) => const ProductsScreen(),
-  DetailsScreen.routeName: (context) => const DetailsScreen(),
-  CartScreen.routeName: (context) => const CartScreen(),
+  // ProductsScreen.routeName: (context) => const ProductsScreen(),
+
+ProductsScreen.routeName: (context) {
+  final Map<String, dynamic>? arguments = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+  final int? categoryId = arguments?['categoryId'] as int?;
+  return ProductsScreen(categoryId: categoryId ?? 0); 
+ },
+
+
+  // DetailsScreen.routeName: (context) => const DetailsScreen(),
+      CartScreen.routeName: (context) => CartScreen(clientId: 5), 
+  
   ProfileScreen.routeName: (context) => const ProfileScreen(),
 };
