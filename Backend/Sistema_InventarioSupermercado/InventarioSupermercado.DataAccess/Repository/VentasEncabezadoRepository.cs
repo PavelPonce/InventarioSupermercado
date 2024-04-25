@@ -104,10 +104,14 @@ namespace InventarioSupermercado.DataAccess.Repository
                     Categ_Descripcion = u.Categ_Descripcion,
                     Prove_Id = u.Prove_Id,
                     cliente = u.cliente
-                    , Venen_DireccionEnvio = u.Venen_DireccionEnvio
-                    ,Vende_Estado = u.Vende_Estado
-                    ,Unida_Descripcion = u.Unida_Descripcion
-                  ,Venen_Estado = u.Venen_Estado
+                    ,
+                    Venen_DireccionEnvio = u.Venen_DireccionEnvio
+                    ,
+                    Vende_Estado = u.Vende_Estado
+                    ,
+                    Unida_Descripcion = u.Unida_Descripcion
+                  ,
+                    Venen_Estado = u.Venen_Estado
                 });
             }
         }
@@ -180,7 +184,7 @@ namespace InventarioSupermercado.DataAccess.Repository
         }
 
 
-   
+
 
 
 
@@ -214,8 +218,6 @@ namespace InventarioSupermercado.DataAccess.Repository
         }
 
 
-
-
-
+       
     }
 }

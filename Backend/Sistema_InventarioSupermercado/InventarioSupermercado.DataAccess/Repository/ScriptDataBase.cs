@@ -64,7 +64,12 @@ namespace InventarioSupermercado.DataAccess.Repository
         public static string VentasEncabezado_Delete = "[Venta].[SP_VentasEncabezado_Eliminar]";
         #endregion
 
-
+        #region Graficos
+        public static string Graph_CantidadVentaPorGenero = "Grph.SP_CantidadDeVentasPorGeneroAlMes";
+        public static string Graph_TotalVentasPorCategoria = "Grph.SP_TotalDeVentasPorCategoriaPorMes";
+        public static string Graph_CantidadRegistrosPorClientesPorGenero = "Grph.SP_CantidadDeRegistrosDeClientesPorGeneroPorMes";
+        public static string Graph_TotalGanancia = "Grph.SP_TotalGananciaPorMes";
+        #endregion
 
         #region usuarios
         public static string Usuarios_Login = "Acce.SP_Usuarios_Login";
