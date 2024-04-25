@@ -13,5 +13,6 @@ namespace InventarioSupermercado.Entities.Entities
         public char Genero { get; set; }
         public int Ano { get; set; }
         public int Mes { get; set; }
+        public string Categoria { get; set; }
     }
 }
