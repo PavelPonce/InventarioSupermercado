@@ -50,7 +50,7 @@ namespace InventarioSupermercado.API
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }

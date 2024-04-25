@@ -8,19 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\pavel\\.nuget\\packages\\": {}
+    "C:\\Users\\LAB2\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pavel\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\InventarioSupermercado.Entities.csproj",
+      "projectUniqueName": "C:\\Users\\LAB2\\Desktop\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\InventarioSupermercado.Entities.csproj",
       "projectName": "InventarioSupermercado.Entities",
-      "projectPath": "C:\\Users\\pavel\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\InventarioSupermercado.Entities.csproj",
-      "packagesPath": "C:\\Users\\pavel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pavel\\OneDrive\\Escritorio\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\obj\\",
+      "projectPath": "C:\\Users\\LAB2\\Desktop\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\InventarioSupermercado.Entities.csproj",
+      "packagesPath": "C:\\Users\\LAB2\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\LAB2\\Desktop\\InventarioSupermercado\\Backend\\Sistema_InventarioSupermercado\\InventarioSupermercado.Entities\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\pavel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\LAB2\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
