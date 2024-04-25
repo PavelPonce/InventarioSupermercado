@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop_app/constants.dart';
+import 'package:shop_app/screens/dashboard/dashboard_screen.dart';
 //import 'package:shop_app/screens/favorite/favorite_screen.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/screens/profile/profile_screen.dart';
@@ -33,6 +34,7 @@ class _InitScreenState extends State<InitScreen> {
       child: Text("Chat"),
     ),*/
     const UsersScreen(),
+    const DashboardScreen(),
     const ProfileScreen()
   ];
 
@@ -114,8 +116,26 @@ class _InitScreenState extends State<InitScreen> {
                 BlendMode.srcIn,
               ),
             ),
-            label: "Home",
+            label: "Users",
           ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              "assets/icons/Star Icon.svg",
+              colorFilter: const ColorFilter.mode(
+                inActiveIconColor,
+                BlendMode.srcIn,
+              ),
+            ),
+            activeIcon: SvgPicture.asset(
+              "assets/icons/Star Icon.svg",
+              colorFilter: const ColorFilter.mode(
+                kPrimaryColor,
+                BlendMode.srcIn,
+              ),
+            ),
+            label: "Dashboard",
+          ),
+         
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               "assets/icons/User Icon.svg",
@@ -131,7 +151,7 @@ class _InitScreenState extends State<InitScreen> {
                 BlendMode.srcIn,
               ),
             ),
-            label: "Fav",
+            label: "Profile",
           ),
         ],
       ),
