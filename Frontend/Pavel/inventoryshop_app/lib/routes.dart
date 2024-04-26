@@ -43,7 +43,7 @@ final Map<String, WidgetBuilder> routes = {
  },
   
   DashboardScreen.routeName:(context) => const DashboardScreen(),
-  DetailsScreen.routeName: (context) => const DetailsScreen(),
-  CartScreen.routeName: (context) => const CartScreen(),
+  // DetailsScreen.routeName: (context) => const DetailsScreen(),
+      CartScreen.routeName: (context) => CartScreen(clientId: 4), 
   ProfileScreen.routeName: (context) => const ProfileScreen(),
 };

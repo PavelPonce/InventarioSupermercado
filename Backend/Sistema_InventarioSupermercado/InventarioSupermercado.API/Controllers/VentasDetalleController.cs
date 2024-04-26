@@ -42,32 +42,43 @@ namespace InventarioSupermercado.API.Controllers
 
 
 
-
         [HttpPut("Update/Detalle")]
-        public IActionResult Y(VentasEncabezadoViewModel item)
+        public IActionResult ActualizarDetalle(VentasEncabezadoViewModel item)
         {
-            var model = _mapper.Map<tbVentasEncabezado>(item);
-            var modelo = new tbVentasEncabezado()
+            try
             {
-                Venen_Id = item.Venen_Id,
-                Sucur_Id = item.Sucur_Id,
-                Venen_DireccionEnvio = item.Venen_DireccionEnvio,
-                Venen_FechaPedido = item.Venen_FechaPedido,
+                var model = _mapper.Map<tbVentasEncabezado>(item);
 
-            };
-            var result = _supermercadoService.UpdateEncabezado(modelo);
+                var modeloActualizado = new tbVentasEncabezado
+                {
+                    Venen_Id = item.Venen_Id,
+                    Vende_Id = item.Vende_Id,
+                    Produ_Id = item.Produ_Id,
+                    Vende_Cantidad = item.Vende_Cantidad,
+                    Venen_DireccionEnvio = item.Venen_DireccionEnvio,
+                    Venen_FechaPedido = item.Venen_FechaPedido,
+                };
 
-            return Ok("Usuario actualizado exitosamente");
+                var result = _supermercadoService.UpdateDetalle(modeloActualizado);
 
+                return Json(new { message = "Detalle actualizado exitosamente" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = ex.Message });
+            }
         }
 
 
-        [HttpDelete("Delete/Detalle")]
-        public IActionResult DeleetDetalle(int Vende_Id)
+
+
+        [HttpDelete("Delete/Detalle/{Vende_Id}")]
+        public IActionResult DeleteDetalle(int Vende_Id)
         {
-            var list = _supermercadoService.DeleteDetalle(Vende_Id);
-            return Ok(list);
+            var result = _supermercadoService.DeleteDetalle(Vende_Id);
+            return Ok(result);
         }
+
 
         [HttpGet("Cargar/Detalle")]
         public IActionResult CargarDetalle(int Venen_Id)

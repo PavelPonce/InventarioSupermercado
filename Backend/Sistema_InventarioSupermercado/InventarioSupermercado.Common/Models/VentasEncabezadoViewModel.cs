@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InventarioSupermercado.Common.Models
 {
-   public class VentasEncabezadoViewModel
+    public class VentasEncabezadoViewModel
     {
         //encabezadooo
         public int Venen_Id { get; set; }
@@ -20,6 +20,12 @@ namespace InventarioSupermercado.Common.Models
         public int? Venen_UsuarioModificacion { get; set; }
         public DateTime? Venen_FechaModificacion { get; set; }
         public bool? Venen_Estado { get; set; }
+        public int MtPag_Id { get; set; }
+        public string Venen_NroTarjeta { get; set; }
+        [NotMapped]
+        public string MtPag_Descripcion { get; set; }
+
+
 
         //detalle
         [NotMapped]
@@ -94,7 +100,7 @@ namespace InventarioSupermercado.Common.Models
 
 
 
-     
+
         public int Clien_Id { get; set; }
         [NotMapped]
         public string Clien_PrimerNombre { get; set; }

@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shop_app/constants.dart';
-//import 'package:shop_app/screens/products/products_screen.dart';
 
 import 'section_title.dart';
 
@@ -24,8 +23,7 @@ class _SpecialOffersState extends State<SpecialOffers> {
   }
 
   Future<void> fetchCategories() async {
-    final response =
-        await http.get(Uri.parse('http://paapi.somee.com/api/Productos/List/Categoriasss'));
+    final response = await http.get(Uri.parse('http://paapi.somee.com/api/Productos/List/Categoriasss'));
 
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
@@ -33,10 +31,11 @@ class _SpecialOffersState extends State<SpecialOffers> {
         categories = data.map((json) => Category.fromJson(json)).toList();
       });
     } else {
-      throw Exception('Failed to load categories');
+      throw Exception('No se pudieron cargar las categorías');
     }
   }
-static const String productsRoute = '/products';
+
+  static const String productsRoute = '/products';
 
   @override
   Widget build(BuildContext context) {
@@ -55,16 +54,13 @@ static const String productsRoute = '/products';
             children: categories
                 .map(
                   (category) => SpecialOfferCard(
-                    category: category.categDescripcion,
-                    categoryId: category.categId,
+                    category: category,
                     press: () {
-       Navigator.pushNamed(
-  context,
-  productsRoute,
-  arguments: {'categoryId': category.categId},
-);
-
-
+                      Navigator.pushNamed(
+                        context,
+                        productsRoute,
+                        arguments: {'categoryId': category.categId},
+                      );
                     },
                   ),
                 )
@@ -80,12 +76,10 @@ class SpecialOfferCard extends StatelessWidget {
   const SpecialOfferCard({
     Key? key,
     required this.category,
-    required this.categoryId,
     required this.press,
   }) : super(key: key);
 
-  final String category;
-  final int categoryId;
+  final Category category;
   final GestureTapCallback press;
 
   @override
@@ -99,11 +93,25 @@ class SpecialOfferCard extends StatelessWidget {
           height: 100,
           child: Card(
             color: kSecondaryColor,
-            child: Center(
-              child: Text(
-                category,
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                // Image from URL
+                Image.network(
+                  category.cateImagenUrl,
+                  fit: BoxFit.cover,
+                ),
+                // Category name overlay
+                Container(
+                  color: Colors.black.withOpacity(0.5),
+                  child: Center(
+                    child: Text(
+                      category.categDescripcion,
+                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),

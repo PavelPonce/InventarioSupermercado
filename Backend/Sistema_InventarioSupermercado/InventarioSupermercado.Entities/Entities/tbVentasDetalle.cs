@@ -38,9 +38,9 @@ namespace InventarioSupermercado.Entities.Entities
         public int Vende_UsuarioCreacion { get; set; }
         public DateTime Vende_FechaCreacion { get; set; }
         public int? Vende_UsuarioModificacion { get; set; }
-
         public DateTime? Vende_FechaModificacion { get; set; }
         public bool? Vende_Estado { get; set; }
+
 
 
 

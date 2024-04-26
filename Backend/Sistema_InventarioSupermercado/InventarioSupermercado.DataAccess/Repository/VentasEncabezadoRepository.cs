@@ -50,6 +50,33 @@ namespace InventarioSupermercado.DataAccess.Repository
         }
 
 
+
+
+
+        //public int Insert(tbVentasEncabezado item)
+        //{
+        //    string sql = ScriptDataBase.VentasEncabezado_Insertar;
+
+        //    using (var db = new SqlConnection(InventarioSupermercadoContext.ConnectionString))
+        //    {
+        //        var parameter = new DynamicParameters();
+        //        parameter.Add("@Sucur_Id", item.Sucur_Id);
+        //        parameter.Add("@Venen_FechaPedido", DateTime.Now);
+        //        parameter.Add("@Venen_UsuarioCreacion", 1);
+        //        parameter.Add("@Venen_FechaCreacion", DateTime.Now);
+        //        parameter.Add("@Clien_Id", item.Clien_Id);
+
+        //        db.Execute(sql, parameter, commandType: CommandType.StoredProcedure);
+        //        parameter.Add("@Venen_Id", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+        //        int venenId = parameter.Get<int>("@Venen_Id");
+
+        //        return venenId;
+        //    }
+        //}
+
+
+
         public RequestStatus Insert(tbVentasEncabezado item)
         {
             string sql = ScriptDataBase.VentasEncabezado_Insertar;
@@ -62,13 +89,22 @@ namespace InventarioSupermercado.DataAccess.Repository
                 parameter.Add("@Venen_UsuarioCreacion", 1);
                 parameter.Add("@Venen_FechaCreacion", DateTime.Now);
                 parameter.Add("@Clien_Id", item.Clien_Id);
+                parameter.Add("@Venen_Id", dbType: DbType.Int32, direction: ParameterDirection.Output); // Parámetro de salida para el Venen_Id
 
+                db.Execute(sql, parameter, commandType: CommandType.StoredProcedure);
 
-                var result = db.Execute(sql, parameter, commandType: CommandType.StoredProcedure);
+                // Obtener el valor del parámetro de salida Venen_Id (SCOPE_IDENTITY())
+                int venenId = parameter.Get<int>("@Venen_Id");
 
-                return new RequestStatus { CodeStatus = result, MessageStatus = "" };
+                // Asignar el Venen_Id al objeto tbVentasEncabezado
+                item.Venen_Id = venenId;
+
+                // Devolver el resultado de la inserción
+                return new RequestStatus { CodeStatus = venenId > 0 ? 1 : 0, MessageStatus = "" };
             }
         }
+
+
 
 
 
@@ -218,6 +254,44 @@ namespace InventarioSupermercado.DataAccess.Repository
         }
 
 
-       
+
+
+
+
+        public void ActualizarEncabezado(int mtPag_Id, int venen_Id, string venen_NroTarjeta)
+        {
+            string storedProcedure = "Venta.VentasEncabezado_EmisionFactura";
+
+            using (var db = new SqlConnection(InventarioSupermercadoContext.ConnectionString))
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@MtPag_Id", mtPag_Id);
+                parameters.Add("@Venen_Id", venen_Id);
+                parameters.Add("@Venen_NroTarjeta", venen_NroTarjeta);
+
+                db.Execute(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+
+
+
+        public IEnumerable<tbMetodosPago> ListarMetodosPago()
+        {
+            string storedProcedure = "Gral.SP_Metodospago_DDL";
+            List<tbMetodosPago> metodosPago;
+
+            using (var db = new SqlConnection(InventarioSupermercadoContext.ConnectionString))
+            {
+                metodosPago = db.Query<tbMetodosPago>(storedProcedure, commandType: CommandType.StoredProcedure).ToList();
+            }
+
+            return metodosPago;
+        }
+
+        RequestStatus IRepository<tbVentasEncabezado>.Insert(tbVentasEncabezado item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
