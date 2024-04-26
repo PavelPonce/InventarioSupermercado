@@ -71,26 +71,27 @@ namespace InventarioSupermercado.DataAccess.Repository
             }
         }
 
-    
 
-        public IEnumerable<tbVentasDetalle> List()
+
+
+        public IEnumerable<tbVentasEncabezado> List()
         {
             throw new NotImplementedException();
         }
 
-        public RequestStatus Update(tbUsuarios item)
+        public RequestStatus Update(tbVentasEncabezado item)
         {
             try
             {
-                string sql = "Acce.SP_Usuarios_Modificar";
+                string sql = "[Venta].[SP_VentasDetalle_Modificar]";
 
                 using (var db = new SqlConnection(InventarioSupermercadoContext.ConnectionString))
                 {
                     var parameter = new DynamicParameters();
-                    parameter.Add("@Vende_Id", item.Usuar_Id);
-                    parameter.Add("@Venen_Id", item.Usuar_Usuario);
-                    parameter.Add("@Produ_Id", item.Perso_Id);
-                    parameter.Add("@Vende_Cantidad", item.Roles_Id);
+                    parameter.Add("@Vende_Id", item.Vende_Id);
+                    parameter.Add("@Venen_Id", item.Venen_Id);
+                    parameter.Add("@Produ_Id", item.Produ_Id);
+                    parameter.Add("@Vende_Cantidad", item.Vende_Cantidad);
                     parameter.Add("@Vende_UsuarioModificacion", 1);
                     parameter.Add("@Vende_FechaModificacion", DateTime.Now);
 

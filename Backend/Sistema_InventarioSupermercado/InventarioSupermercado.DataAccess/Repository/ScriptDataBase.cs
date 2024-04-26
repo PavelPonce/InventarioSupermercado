@@ -42,6 +42,8 @@ namespace InventarioSupermercado.DataAccess.Repository
         public static string Categorias_ddl = "Gral.SP_Categorias_DDL";
         public static string Proveedores_ddl = "Gral.SP_Provedores_DDL";
         public static string Sucursales_ddl = "Gral.SP_Sucursales_DDL";
+        public static string Unidades_DDL = "Gral.SP_Unidades_DDL";
+
 
 
 

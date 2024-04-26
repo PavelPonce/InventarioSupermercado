@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class Product {
+class Productcarrito {
   final int id;
   final String descripcion;
   final int existencia;
@@ -11,8 +11,11 @@ class Product {
   final String unidadDescripcion;
   final String marcaProveedor;
   final String imageUrl;
+  final int vendet;
+  final int vencant;
+  
 
-  Product({
+  Productcarrito({
     required this.id,
     required this.descripcion,
     required this.existencia,
@@ -21,10 +24,13 @@ class Product {
     required this.unidadDescripcion,
     required this.marcaProveedor,
     required this.imageUrl,
+    required this.vendet,
+    required this.vencant,
+
   });
 
-  factory Product.fromJson(Map<String, dynamic> json) {
-    return Product(
+  factory Productcarrito.fromJson(Map<String, dynamic> json) {
+    return Productcarrito(
       id: json['produ_Id'],
       descripcion: json['produ_Descripcion'],
       existencia: json['produ_Existencia'],
@@ -32,26 +38,33 @@ class Product {
       precioVenta: json['produ_PrecioVenta'].toDouble(),
       unidadDescripcion: json['unida_Descripcion'],
       marcaProveedor: json['prove_Marca'],
-      imageUrl: json['produ_ImagenUrl'],
+      imageUrl: 'URL_DE_LA_IMAGEN',
+      vendet: json['vende_Id'],
+      vencant: json['vende_Cantidad'],
+
     );
   }
 }
 
-class DetailsScreen extends StatefulWidget {
+class DetallesProductocarrito extends StatefulWidget {
   static String routeName = "/details";
 
   final int productId;
+  final int vendetId;
 
-  const DetailsScreen({Key? key, required this.productId}) : super(key: key);
+  const DetallesProductocarrito({
+    Key? key,
+    required this.productId,
+    required this.vendetId,
+  }) : super(key: key);
 
   @override
   _DetailsScreenState createState() => _DetailsScreenState();
 }
 
-class _DetailsScreenState extends State<DetailsScreen> {
+class _DetailsScreenState extends State<DetallesProductocarrito> {
   late Future<Map<String, dynamic>> _productDetailsFuture;
-  int cantidad = 0;
-  bool isFirstTime = true; // Controlar la primera vez que se presiona el botón "+"
+  bool isFirstTime = true; 
 
   @override
   void initState() {
@@ -61,9 +74,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   Future<Map<String, dynamic>> fetchProductDetails() async {
     final response = await http.get(
-      Uri.parse('https://localhost:44307/api/Productos/Cargar/Productos?Produ_Id=${widget.productId}'),
-    );
+      Uri.parse('https://localhost:44307/api/Productos/List/Productocarrito?prodid=${widget.productId}'),
+            // Uri.parse('https://localhost:44307/api/Productos/List/Productocarrito?prodid=${widget.productId}vendetId=${widget.vendetId}'),
 
+    );
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
@@ -87,7 +101,7 @@ Future<Map<String, int>> agregarAlCarrito(int productId) async {
         'Venen_UsuarioCreacion': '1',
         'Clien_Id': '5',
         'Produ_Id': productId.toString(),
-        'Vende_Cantidad': cantidad.toString(),
+        // 'Vende_Cantidad': cantidad.toString(),
       },
     );
 
@@ -175,9 +189,9 @@ void eliminarDetalle(int vendeId) async {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else {
             final productDetails = snapshot.data!;
-            final product = Product.fromJson(productDetails['data'][0]);
+            final product = Productcarrito.fromJson(productDetails['data'][0]);
 final vendeId = productDetails['ventaId'] ?? 0;
-
+int cantidad = product.vencant;
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -233,96 +247,36 @@ final vendeId = productDetails['ventaId'] ?? 0;
                     ),
                   ),
                   SizedBox(height: 20),
-
-
-Center(
-  child: Column(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    children: [
-      // Información del producto
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              product.descripcion,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Existencia: ${product.existencia}',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Precio de compra: ${product.precioCompra}',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Precio de venta: ${product.precioVenta}',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Unidad: ${product.unidadDescripcion}',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Proveedor/Marca: ${product.marcaProveedor}',
-              style: TextStyle(fontSize: 16),
-            ),
-          ],
-        ),
-      ),
-      SizedBox(height: 20),
-      // Imagen del producto
-      Container(
-        width: 200,
-        height: 200,
-        decoration: BoxDecoration(
-          color: Colors.grey[200],
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Stack(
-          children: [
-            Positioned.fill(
-              child: product.imageUrl != null
-                  ? Image.network(
-                      product.imageUrl,
-                      fit: BoxFit.cover,
-                    )
-                  : Icon(
-                      Icons.image,
-                      size: 100,
-                      color: Colors.grey[400],
+                  Center(
+                    child: Container(
+                      width: 200,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Icon(
+                        Icons.image,
+                        size: 100,
+                        color: Colors.grey[400],
+                      ),
                     ),
-            ),
-            product.imageUrl == null
-                ? Center(
+                  ),
+                  SizedBox(height: 20),
+                  Center(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        IconButton(
-                          onPressed: () {
-                            setState(() {
-                              if (cantidad > 0) {
-                                cantidad--;
-                                if (cantidad == 0) {
-                                  eliminarDetalle(vendeId);
-                                } else {
-                                  actualizarCantidad(vendeId, product.id, cantidad);
-                                }
-                              }
-                            });
-                          },
-                          icon: Icon(Icons.remove),
-                        ),
+                    IconButton(
+  onPressed: () {
+    setState(() {
+      cantidad++;
+      actualizarCantidad(vendeId, product.id, cantidad);
+    });
+  },
+  icon: Icon(Icons.add),
+),
+
                         Text(
                           '$cantidad',
                           style: TextStyle(fontSize: 20),
@@ -343,17 +297,14 @@ Center(
                         ),
                       ],
                     ),
-                  )
-                : SizedBox(),
-          ],
-        ),
+                  ),
+                  SizedBox(height: 20),
+                ],
+              ),
+            );
+          }
+        },
       ),
-      SizedBox(height: 20),
- ],
-        ),
-      ),
-    ],
-  ),
-);
-          }})
-          );}}
+    );
+  }
+}

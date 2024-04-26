@@ -38,7 +38,24 @@ namespace InventarioSupermercado.API.Controllers
             }
         }
 
-        
+
+
+
+        [HttpGet("List/Productocarrito")]
+        public IActionResult ListProductosCarrito(int prodid, int vendetId)
+        {
+            try
+            {
+                var productos = _supermercadoService.ListProcuctosCarrito(prodid, vendetId);
+                return Ok(productos);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Error al obtener la lista de productos.");
+            }
+        }
+
+
 
         [HttpGet("List/CategoriasDdl")]
         public IActionResult ListCategoriasDdl()
@@ -46,6 +63,22 @@ namespace InventarioSupermercado.API.Controllers
             try
             {
                 var usuarios = _supermercadoService.ListCategorias();
+                return Ok(usuarios);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Error al obtener la lista de categorias.");
+            }
+        }
+
+
+
+        [HttpGet("List/UnidadesDdl")]
+        public IActionResult Listunidades()
+        {
+            try
+            {
+                var usuarios = _supermercadoService.ListUnidades();
                 return Ok(usuarios);
             }
             catch (Exception ex)
@@ -99,6 +132,21 @@ namespace InventarioSupermercado.API.Controllers
             }
         }
 
+
+
+        [HttpGet("List/ImpuestoDdl")]
+        public IActionResult ListImpuestoDdl()
+        {
+            try
+            {
+                var usuarios = _supermercadoService.ListImpuestos();
+                return Ok(usuarios);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Error al obtener la lista de sucursales.");
+            }
+        }
 
 
 

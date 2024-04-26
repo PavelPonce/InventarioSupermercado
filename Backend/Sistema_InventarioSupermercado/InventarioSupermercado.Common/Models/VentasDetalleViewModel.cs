@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InventarioSupermercado.Common.Models
 {
-   public  class VentasDetalleViewModel
+    public class VentasDetalleViewModel
     {
         public int Venen_Id { get; set; }
         [NotMapped]
@@ -38,7 +38,7 @@ namespace InventarioSupermercado.Common.Models
         public int Vende_UsuarioCreacion { get; set; }
         public DateTime Vende_FechaCreacion { get; set; }
         public int? Vende_UsuarioModificacion { get; set; }
-       
+
         public DateTime? Vende_FechaModificacion { get; set; }
         public bool? Vende_Estado { get; set; }
 

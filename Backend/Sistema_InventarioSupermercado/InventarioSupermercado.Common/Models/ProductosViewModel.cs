@@ -9,6 +9,7 @@ namespace InventarioSupermercado.Common.Models
 {
     public class ProductosViewModel
     {
+
         public int Produ_Id { get; set; }
         public string Produ_Descripcion { get; set; }
         public int Produ_Existencia { get; set; }
@@ -26,6 +27,7 @@ namespace InventarioSupermercado.Common.Models
         public bool? Produ_Estado { get; set; }
 
         public string Produ_ImagenUrl { get; set; }
+
         [NotMapped]
         public string Unida_Descripcion { get; set; }
         [NotMapped]
@@ -42,5 +44,30 @@ namespace InventarioSupermercado.Common.Models
 
         [NotMapped]
         public string Sucur_Descripcion { get; set; }
+
+        [NotMapped]
+        public int Vende_Id { get; set; }
+        public int Vende_Cantidad { get; set; }
+        [NotMapped]
+        public int Vende_UsuarioCreacion { get; set; }
+        [NotMapped]
+        public DateTime Vende_FechaCreacion { get; set; }
+        [NotMapped]
+        public int? Vende_UsuarioModificacion { get; set; }
+        [NotMapped]
+        public DateTime? Vende_FechaModificacion { get; set; }
+        [NotMapped]
+        public bool? Vende_Estado { get; set; }
+
+
+
+        [NotMapped]
+        public string cliente { get; set; }
+
+
+
+
+
+        public int Clien_Id { get; set; }
     }
 }

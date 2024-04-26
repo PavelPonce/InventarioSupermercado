@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace InventarioSupermercado.BusinessLogic.Services
 {
-   public class SupermercadoService
+    public class SupermercadoService
     {
         private readonly ProductosRepository _productosRepository;
         private readonly VentasEncabezadoRepository _ventasEncabezado;
@@ -37,6 +37,21 @@ namespace InventarioSupermercado.BusinessLogic.Services
             try
             {
                 var productos = _productosRepository.List(categId);
+                return productos;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                throw;
+            }
+        }
+
+
+        public IEnumerable<ProductosViewModel> ListProcuctosCarrito(int prodid, int vendetId)
+        {
+            try
+            {
+                var productos = _productosRepository.ListadoProductosCarrito(prodid, vendetId);
                 return productos;
             }
             catch (Exception ex)
@@ -148,7 +163,7 @@ namespace InventarioSupermercado.BusinessLogic.Services
             }
         }
 
-        public IEnumerable<ProductosViewModel> ListImpuestos()
+        public IEnumerable<tbImpuestos> ListImpuestos()
         {
             try
             {
@@ -164,11 +179,27 @@ namespace InventarioSupermercado.BusinessLogic.Services
         }
 
 
-        public IEnumerable<ProductosViewModel> ListCategorias()
+        public IEnumerable<CategoriasViewModel> ListCategorias()
         {
             try
             {
                 var usuarios = _productosRepository.Listcategorias();
+                return usuarios;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"errorrr: {ex.Message}");
+
+                throw;
+            }
+        }
+
+
+        public IEnumerable<tbUnidades> ListUnidades()
+        {
+            try
+            {
+                var usuarios = _productosRepository.ListUnidades();
                 return usuarios;
             }
             catch (Exception ex)
@@ -213,7 +244,7 @@ namespace InventarioSupermercado.BusinessLogic.Services
         }
 
 
-        public IEnumerable<ProductosViewModel> ListProveedores()
+        public IEnumerable<tbProveedores> ListProveedores()
         {
             try
             {
@@ -291,6 +322,11 @@ namespace InventarioSupermercado.BusinessLogic.Services
         }
 
 
+        //public int InsertEncabezado(tbVentasEncabezado item)
+        //{
+        //    var repository = new VentasEncabezadoRepository(); 
+        //    return repository.Insert(item);
+        //}
 
 
         public tbVentasEncabezado InsertEncabezado(tbVentasEncabezado item)
@@ -300,11 +336,11 @@ namespace InventarioSupermercado.BusinessLogic.Services
                 var result = _ventasEncabezado.Insert(item);
                 if (result.CodeStatus > 0)
                 {
-                    return item; 
+                    return item;
                 }
                 else
                 {
-                    return null; 
+                    return null;
                 }
             }
             catch (Exception ex)
@@ -441,8 +477,7 @@ namespace InventarioSupermercado.BusinessLogic.Services
         }
 
 
-
-        public ServiceResult UpdateDetalle(tbVentasDetalle item)
+        public ServiceResult UpdateDetalle(tbVentasEncabezado item)
         {
             var result = new ServiceResult();
             try
@@ -462,6 +497,8 @@ namespace InventarioSupermercado.BusinessLogic.Services
                 return result.Error(ex.Message);
             }
         }
+
+
 
 
         public ServiceResult DeleteDetalle(int Venen_Id)
@@ -500,6 +537,28 @@ namespace InventarioSupermercado.BusinessLogic.Services
             {
                 throw new Exception("Error al obtener el encabezado existente", ex);
             }
+        }
+
+
+        public bool ActualizarEncabezado(int mtPag_Id, int venen_Id, string venen_NroTarjeta)
+        {
+            try
+            {
+                _ventasEncabezado.ActualizarEncabezado(mtPag_Id, venen_Id, venen_NroTarjeta);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+
+
+        public IEnumerable<tbMetodosPago> ListarMetodosPago()
+        {
+            return _ventasEncabezado.ListarMetodosPago();
         }
 
 

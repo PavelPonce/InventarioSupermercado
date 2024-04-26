@@ -25,6 +25,10 @@ namespace InventarioSupermercado.Entities.Entities
         public DateTime? Venen_FechaModificacion { get; set; }
         public bool? Venen_Estado { get; set; }
 
+        public int MtPag_Id { get; set; }
+        public string Venen_NroTarjeta { get; set; }
+        [NotMapped]
+        public string MtPag_Descripcion { get; set; }
         //detalle
         [NotMapped]
         public int Vende_Id { get; set; }
