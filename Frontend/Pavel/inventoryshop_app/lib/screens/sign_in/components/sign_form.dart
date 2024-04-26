@@ -2,6 +2,11 @@ import 'dart:convert';
 
 import 'package:cache_manager/cache_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_app/screens/auth/auth_screen.dart';
+import 'package:shop_app/screens/init_screen.dart';
+import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
+import 'package:shop_app/screens/sign_up/sign_up_screen.dart';
+import 'package:shop_app/screens/splash/splash_screen.dart';
 import 'package:shop_app/utilities/api_endpoints.dart';
 import '../../../components/custom_surfix_icon.dart';
 import '../../../components/form_error.dart';
@@ -155,7 +160,12 @@ class _SignFormState extends State<SignForm> {
                     
                     bool isLoggedIn = await login(username.toString(), password.toString());
                     if (isLoggedIn) {
-                      Navigator.pushNamedAndRemoveUntil(context, LoginSuccessScreen.routeName, (route) => false);
+                      Navigator.pushNamedAndRemoveUntil(context, InitScreen.routeName, (route) => 
+                                          route.settings.name != AuthScreen.routeName && 
+                                          route.settings.name != SplashScreen.routeName && 
+                                          route.settings.name != SignInScreen.routeName &&
+                                          route.settings.name != SignUpScreen.routeName &&
+                                          route.settings.name != ForgotPasswordScreen.routeName);                    
                     } else {
                       addError(error: "Usuario o contraseña incorrectos");
                     }

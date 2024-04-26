@@ -1,8 +1,14 @@
+import 'dart:convert';
+
+import 'package:cache_manager/core/read_cache_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shop_app/constants.dart';
+import 'package:shop_app/screens/entry_insertion_screen.dart/entry_insertion_screen.dart';
 
 class EntryScreen extends StatelessWidget {
+  static String routeName = '/entry';
+
   const EntryScreen({super.key});
 
   @override
@@ -22,7 +28,7 @@ class EntryScreen extends StatelessWidget {
             Align(
               alignment: Alignment.bottomRight,
               child: Padding(
-                padding: const EdgeInsets.all(5),
+                padding: const EdgeInsets.all(8),
                 child: FloatingActionButton(
                   backgroundColor: kPrimaryLightColor.withOpacity(0.6),
                   focusColor: kPrimaryLightColor.withOpacity(0.6),
@@ -30,7 +36,10 @@ class EntryScreen extends StatelessWidget {
                     Icons.add,
                     color: kPrimaryLightColor,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+
+                    Navigator.of(context).pushNamed(EntryInsertionScreen.routeName);
+                  },
                 ),
               ),
             )

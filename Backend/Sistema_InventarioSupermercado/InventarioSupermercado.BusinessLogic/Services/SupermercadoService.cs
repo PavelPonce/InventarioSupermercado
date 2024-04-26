@@ -15,18 +15,19 @@ namespace InventarioSupermercado.BusinessLogic.Services
         private readonly ProductosRepository _productosRepository;
         private readonly VentasEncabezadoRepository _ventasEncabezado;
         private readonly VentasDetalleRepository _ventasDetalleRepository;
-
+        private readonly ClientesRepository _clientesRepository;
 
 
 
 
         public SupermercadoService(ProductosRepository productosRepository,
-            VentasEncabezadoRepository ventasEncabezado, VentasDetalleRepository ventasDetalleRepository)
+            VentasEncabezadoRepository ventasEncabezado, VentasDetalleRepository ventasDetalleRepository,
+            ClientesRepository clientesRepository)
         {
             _productosRepository = productosRepository;
             _ventasEncabezado = ventasEncabezado;
             _ventasDetalleRepository = ventasDetalleRepository;
-
+            _clientesRepository = clientesRepository;
         }
 
         #region productos
@@ -232,13 +233,29 @@ namespace InventarioSupermercado.BusinessLogic.Services
 
         #endregion
 
-
-
-
-
-
-
-
+        #region Cliente
+        public ServiceResult CliNumeration()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _clientesRepository.Numeration();
+                if(list.Clien_Id != 0)
+                {
+                    return result.Ok(list);
+                }
+                else
+                {
+                    return result.Error(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                throw;
+            }
+        }
+        #endregion
 
 
         #region Encabezado

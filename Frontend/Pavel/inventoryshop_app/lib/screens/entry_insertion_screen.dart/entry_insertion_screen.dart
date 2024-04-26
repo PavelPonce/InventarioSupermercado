@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/constants.dart';
+import 'package:shop_app/screens/entry_insertion_screen.dart/components/entry_form.dart';
 
 class EntryInsertionScreen extends StatelessWidget {
+  static String routeName = '/entry_insertion';
+
+
   const EntryInsertionScreen({super.key});
 
   @override
@@ -17,7 +21,9 @@ class EntryInsertionScreen extends StatelessWidget {
         child: const Stack(
           children: [
             Column(
-              children: [],
+              children: [
+                EntryForm(),
+              ],
             ),
           ],
         ),

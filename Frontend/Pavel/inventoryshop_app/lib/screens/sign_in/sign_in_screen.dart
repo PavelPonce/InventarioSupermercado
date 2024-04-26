@@ -12,8 +12,10 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SingleChildScrollView(
+        child: Container(
         width: double.infinity,
+        height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
           gradient: kMyPrimaryGradientColor,
         ),
@@ -27,7 +29,7 @@ class SignInScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Center(
-                    child: FadeInUp(duration: const Duration(milliseconds: 1000), child: SvgPicture.asset('../../../assets/svg/logo.svg',width: 70.0,height: 70.0,)),
+                    child: FadeInUp(duration: const Duration(milliseconds: 1000), child: SvgPicture.asset('assets/icons/logo.svg',width: 70.0,height: 70.0,)),
                   ),
                   const SizedBox(height: 10,),
                   FadeInUp(duration: const Duration(milliseconds: 1000), child: const Text("Inicio de Sesión", style: TextStyle(color: Colors.white, fontSize: 30),)),
@@ -61,6 +63,7 @@ class SignInScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
+      ) 
+      );
    }
 }

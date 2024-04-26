@@ -1,4 +1,9 @@
+import 'package:cache_manager/cache_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_app/screens/auth/auth_screen.dart';
+import 'package:shop_app/screens/forgot_password/forgot_password_screen.dart';
+import 'package:shop_app/screens/init_screen.dart';
+import 'package:shop_app/screens/sign_up/sign_up_screen.dart';
 
 //import 'package:shop_app/screens/sign_in/components/sign_form.dart';
 //import 'package:shop_app/screens/sign_up/sign_up_screen.dart';
@@ -85,7 +90,10 @@ class _SplashScreenState extends State<SplashScreen> {
                       const Spacer(flex: 3),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, SignInScreen.routeName);
+                          Navigator.pushNamedAndRemoveUntil(context, SignInScreen.routeName, (route) => 
+                                          route.settings.name != AuthScreen.routeName && 
+                                          route.settings.name != SplashScreen.routeName);
+         
                         },
                         child: const Text("Continuar"),
                       ),

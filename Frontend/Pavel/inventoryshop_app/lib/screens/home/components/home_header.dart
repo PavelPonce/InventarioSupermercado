@@ -16,7 +16,7 @@ class HomeHeader extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
-          SvgPicture.asset('../../../assets/svg/logo.svg',width: 50.0,height: 50.0,),
+          SvgPicture.asset('assets/icons/logo.svg',width: 50.0,height: 50.0,),
           const SizedBox(height: 10,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

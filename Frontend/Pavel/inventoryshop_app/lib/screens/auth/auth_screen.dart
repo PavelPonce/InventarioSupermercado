@@ -1,10 +1,13 @@
 import 'dart:async';
 
 import 'package:cache_manager/core/cache_manager_utils.dart';
+import 'package:cache_manager/core/write_cache_service.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/screens/auth/components/loading_screen.dart';
+import 'package:shop_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:shop_app/screens/init_screen.dart';
 import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
+import 'package:shop_app/screens/sign_up/sign_up_screen.dart';
 import 'package:shop_app/screens/splash/splash_screen.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -26,15 +29,22 @@ class _AuthScreenState extends State<AuthScreen> {
           key: 'splashed', 
           valueType: ValueType.BoolValue, 
           actionIfNull: (){
-            Navigator.of(context).pushNamed(SplashScreen.routeName);
+            WriteCache.setBool(key: 'splashed', value: true);
+            Navigator.pushNamedAndRemoveUntil(context, SplashScreen.routeName, (route) => route.settings.name != AuthScreen.routeName &&
+                                               route.settings.name != InitScreen.routeName);
           }, 
           actionIfNotNull: (){
-            Navigator.of(context).pushNamed(SignInScreen.routeName);
+            Navigator.pushNamedAndRemoveUntil(context, SignInScreen.routeName, (route) => route.settings.name != AuthScreen.routeName &&
+                                             route.settings.name != InitScreen.routeName && route.settings.name != SplashScreen.routeName);
           }
         );
       }, 
       actionIfNotNull: (){
-        Navigator.of(context).pushNamed(InitScreen.routeName);
+        Navigator.pushNamedAndRemoveUntil(context, InitScreen.routeName, (route) => route.settings.name != AuthScreen.routeName && 
+                                          route.settings.name != SplashScreen.routeName &&
+                                          route.settings.name != SignInScreen.routeName &&
+                                          route.settings.name != SignUpScreen.routeName && 
+                                          route.settings.name != ForgotPasswordScreen.routeName);
       }, 
     );
   }

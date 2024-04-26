@@ -87,6 +87,8 @@ namespace InventarioSupermercado.DataAccess.Repository
         #region Clientes
         public static string Clientes_MunicipioDDL = "[Gral].[SP_Municipios_DropDownList]";
         public static string Clientes_EstadoCivilDDL = "[Gral].[SP_EstadosCiviles_DropDownList]";
+        public static string Clientes_Numeration = "[Venta].[SP_Cliente_Numeration]";
+
         #endregion
 
 

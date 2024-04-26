@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:cache_manager/cache_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/utilities/api_endpoints.dart';
@@ -8,7 +7,6 @@ import '../../../components/form_error.dart';
 import '../../../constants.dart';
 import '../../../helper/keyboard.dart';
 import '../../forgot_password/forgot_password_screen.dart';
-import '../../login_success/login_success_screen.dart';
 import 'package:http/http.dart' as http;
 
 class EntryForm extends StatefulWidget {
@@ -47,6 +45,74 @@ class _EntryFormState extends State<EntryForm> {
       key: _formKey,
       child: Column(
         children: <Widget>[
+          Container(
+            padding: const EdgeInsets.all(10),
+            child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      // First Row
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              padding: EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blue), // Border similar to Table
+                              ),
+                              child: TextFormField(
+                                decoration: const InputDecoration(
+                                  enabledBorder: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  hintText: 'Factura',
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(
+                              padding: EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blue), // Border similar to Table
+                              ),
+                              child: DropdownButtonFormField<String>(
+                                decoration: const InputDecoration(
+                                  enabledBorder: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  hintText: 'Marca_Id',
+                                ),
+                                items: ['Marca 1', 'Marca 2', 'Marca 3'].map((String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList(),
+                                onChanged: (_) {},
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(
+                              padding: EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blue), // Border similar to Table
+                              ),
+                              child: const TextField(
+                                decoration: InputDecoration(
+                                  enabledBorder: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  hintText: 'FechaFactura',
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),   
+           
+          ),
           Container(
             padding: const EdgeInsets.all(10),
             child: TextFormField(

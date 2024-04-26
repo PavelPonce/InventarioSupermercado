@@ -1,6 +1,7 @@
 import 'package:cache_manager/cache_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/constants.dart';
+import 'package:shop_app/screens/init_screen.dart';
 import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
 
 import 'components/profile_menu.dart';
@@ -51,8 +52,9 @@ class ProfileScreen extends StatelessWidget {
               icon: "assets/icons/Log out.svg",
               press: () {
                 DeleteCache.deleteKey('user');
-                DeleteCache.deleteKey('loggedIn',
-                  Navigator.of(context).pushNamedAndRemoveUntil(SignInScreen.routeName, (route)=>false));
+                DeleteCache.deleteKey('loggedIn');
+                Navigator.pushNamedAndRemoveUntil(context, SignInScreen.routeName, (route) => 
+                                                  route.settings.name != InitScreen.routeName);
               },
             ),
           ],

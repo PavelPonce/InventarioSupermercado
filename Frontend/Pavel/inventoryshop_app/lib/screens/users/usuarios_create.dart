@@ -73,7 +73,7 @@ Future<void> _fetchEmpleados() async {
       final response = await http.post(
         Uri.parse(urlCrearUsuario),
       body: jsonEncode({
-  "5": _usuarioViewModel.usuarUsuario,
+  "Usuar_Id": _usuarioViewModel.usuarUsuario,
   "Usuar_Contrasena": _usuarioViewModel.usuarContrasena,
   "Perso_Id": _selectedEmpleadoId,
   "Roles_Id": _selectedRoleId,
@@ -117,7 +117,8 @@ Future<void> _fetchEmpleados() async {
       appBar: AppBar(
         title: Text("Crear Usuario"),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
+        child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
@@ -217,7 +218,8 @@ Future<void> _fetchEmpleados() async {
           ),
         ),
       ),
-    );
+   
+      )  );
   }
 }
 

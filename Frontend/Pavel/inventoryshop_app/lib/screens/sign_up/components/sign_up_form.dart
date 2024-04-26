@@ -1,9 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:shop_app/models/UsuariosViewModel.dart';
+import 'package:shop_app/utilities/api_endpoints.dart'; 
 
 import '../../../components/custom_surfix_icon.dart';
 import '../../../components/form_error.dart';
 import '../../../constants.dart';
 import '../../complete_profile/complete_profile_screen.dart';
+import 'package:http/http.dart' as http;
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});
@@ -14,11 +19,49 @@ class SignUpForm extends StatefulWidget {
 
 class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
+  UsuariosViewModel _usuarioViewModel = UsuariosViewModel(); 
+  String? user;
   String? email;
   String? password;
   String? conform_password;
   bool remember = false;
   final List<String?> errors = [];
+
+
+  Future<void> _crearUsuario() async {
+    String urlCrearUsuario = "http://paapi.somee.com/api/Usuario/Insert/Usuarios";
+    var url = Uri.parse(
+      ApiEndPoint.baseUrl + 'Numeration',
+    );
+
+    if (_formKey.currentState!.validate()) {
+      try {
+        var respo = await http.get(url);
+        var json = jsonDecode(respo.body);
+        var clienteid = json['data']['Clien_Id'] + 1;
+
+      await http.post(
+        Uri.parse(urlCrearUsuario),
+        body: jsonEncode({
+          "Usuar_Usuario": _usuarioViewModel.usuarUsuario,
+          "Usuar_Contrasena": _usuarioViewModel.usuarContrasena,
+          "Perso_Id": clienteid,
+          "Roles_Id": 1,
+          "Usuar_Admin": 0,
+          "Usuar_Tipo": 0,
+        }),
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+      );
+    }catch (e) {
+      print("Error: $e");
+    }
+  }
+  }
+
+
 
   void addError({String? error}) {
     if (!errors.contains(error)) {
@@ -44,7 +87,7 @@ class _SignUpFormState extends State<SignUpForm> {
         children: [
           TextFormField(
             keyboardType: TextInputType.emailAddress,
-            onSaved: (newValue) => email = newValue,
+            onSaved: (newValue) => _usuarioViewModel.usuarUsuario = newValue,
             onChanged: (value) {
               if (value.isNotEmpty) {
                 removeError(error: kEmailNullError);
@@ -64,18 +107,18 @@ class _SignUpFormState extends State<SignUpForm> {
               return null;
             },
             decoration: const InputDecoration(
-              labelText: "Email",
-              hintText: "Enter your email",
+              labelText: "Usuario",
+              hintText: "Ingresa tu usuario",
               // If  you are using latest version of flutter then lable text and hint text shown like this
               // if you r using flutter less then 1.20.* then maybe this is not working properly
               floatingLabelBehavior: FloatingLabelBehavior.always,
-              suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
+              suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/User.svg"),
             ),
-          ),
+          ),         
           const SizedBox(height: 20),
           TextFormField(
             obscureText: true,
-            onSaved: (newValue) => password = newValue,
+            onSaved: (newValue) => _usuarioViewModel.usuarContrasena = newValue,
             onChanged: (value) {
               if (value.isNotEmpty) {
                 removeError(error: kPassNullError);
@@ -95,8 +138,8 @@ class _SignUpFormState extends State<SignUpForm> {
               return null;
             },
             decoration: const InputDecoration(
-              labelText: "Password",
-              hintText: "Enter your password",
+              labelText: "Contraseña",
+              hintText: "Ingresa tu Contraseña",
               // If  you are using latest version of flutter then lable text and hint text shown like this
               // if you r using flutter less then 1.20.* then maybe this is not working properly
               floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -110,7 +153,7 @@ class _SignUpFormState extends State<SignUpForm> {
             onChanged: (value) {
               if (value.isNotEmpty) {
                 removeError(error: kPassNullError);
-              } else if (value.isNotEmpty && password == conform_password) {
+              } else if (value.isNotEmpty && _usuarioViewModel.usuarContrasena == conform_password) {
                 removeError(error: kMatchPassError);
               }
               conform_password = value;
@@ -126,8 +169,8 @@ class _SignUpFormState extends State<SignUpForm> {
               return null;
             },
             decoration: const InputDecoration(
-              labelText: "Confirm Password",
-              hintText: "Re-enter your password",
+              labelText: "Confirma tu Contraseña",
+              hintText: "Re-ingresa tu Contraseña",
               // If  you are using latest version of flutter then lable text and hint text shown like this
               // if you r using flutter less then 1.20.* then maybe this is not working properly
               floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -140,11 +183,13 @@ class _SignUpFormState extends State<SignUpForm> {
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
+
+                _crearUsuario();
                 // if all are valid then go to success screen
                 Navigator.pushNamed(context, CompleteProfileScreen.routeName);
               }
             },
-            child: const Text("Continue"),
+            child: const Text("Continuar"),
           ),
         ],
       ),

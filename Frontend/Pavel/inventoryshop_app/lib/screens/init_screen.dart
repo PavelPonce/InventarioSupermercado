@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop_app/constants.dart';
 import 'package:shop_app/screens/dashboard/dashboard_screen.dart';
+import 'package:shop_app/screens/entry/entry_screen.dart';
 //import 'package:shop_app/screens/favorite/favorite_screen.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/screens/profile/profile_screen.dart';
@@ -33,8 +34,9 @@ class _InitScreenState extends State<InitScreen> {
     /*const Center(
       child: Text("Chat"),
     ),*/
-    const UsersScreen(),
     const DashboardScreen(),
+    const EntryScreen(),
+    const UsersScreen(),
     const ProfileScreen()
   ];
 
@@ -103,23 +105,6 @@ class _InitScreenState extends State<InitScreen> {
           ),*/
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              "assets/icons/User.svg",
-              colorFilter: const ColorFilter.mode(
-                inActiveIconColor,
-                BlendMode.srcIn,
-              ),
-            ),
-            activeIcon: SvgPicture.asset(
-              "assets/icons/User.svg",
-              colorFilter: const ColorFilter.mode(
-                kPrimaryColor,
-                BlendMode.srcIn,
-              ),
-            ),
-            label: "Users",
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
               "assets/icons/Star Icon.svg",
               colorFilter: const ColorFilter.mode(
                 inActiveIconColor,
@@ -135,7 +120,40 @@ class _InitScreenState extends State<InitScreen> {
             ),
             label: "Dashboard",
           ),
-         
+           BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              "assets/icons/Cash.svg",
+              colorFilter: const ColorFilter.mode(
+                inActiveIconColor,
+                BlendMode.srcIn,
+              ),
+            ),
+            activeIcon: SvgPicture.asset(
+              "assets/icons/Cash.svg",
+              colorFilter: const ColorFilter.mode(
+                kPrimaryColor,
+                BlendMode.srcIn,
+              ),
+            ),
+            label: "Compras",
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              "assets/icons/User.svg",
+              colorFilter: const ColorFilter.mode(
+                inActiveIconColor,
+                BlendMode.srcIn,
+              ),
+            ),
+            activeIcon: SvgPicture.asset(
+              "assets/icons/User.svg",
+              colorFilter: const ColorFilter.mode(
+                kPrimaryColor,
+                BlendMode.srcIn,
+              ),
+            ),
+            label: "Users",
+          ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               "assets/icons/User Icon.svg",

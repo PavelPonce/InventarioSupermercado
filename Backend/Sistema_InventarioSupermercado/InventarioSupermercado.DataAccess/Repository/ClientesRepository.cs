@@ -42,7 +42,26 @@ namespace InventarioSupermercado.DataAccess.Repository
             }
         }
 
+        public tbClientes Numeration()
+        {
+            string sql = ScriptDataBase.Clientes_Numeration;
 
+            List<tbClientes> listad = new List<tbClientes>();
+
+            using (var db = new SqlConnection(InventarioSupermercadoContext.ConnectionString))
+            {
+                listad = db.Query<tbClientes>(sql, commandType: CommandType.StoredProcedure).ToList();
+
+                var result = new tbClientes();
+
+                if(listad.Count > 0)
+                {
+                    result = listad.First();
+                }
+
+                return result;
+            }
+        }
         public IEnumerable<ClienteViewModel> ListEstadosCiviles()
         {
             string sql = ScriptDataBase.Clientes_EstadoCivilDDL;
