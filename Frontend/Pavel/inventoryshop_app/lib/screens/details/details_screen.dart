@@ -61,7 +61,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   Future<Map<String, dynamic>> fetchProductDetails() async {
     final response = await http.get(
-      Uri.parse('https://localhost:44307/api/Productos/Cargar/Productos?Produ_Id=${widget.productId}'),
+      Uri.parse('https://paapi.somee.com/api/Productos/Cargar/Productos?Produ_Id=${widget.productId}'),
     );
 
     if (response.statusCode == 200) {
@@ -79,7 +79,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
 Future<Map<String, int>> agregarAlCarrito(int productId) async {
   try {
     final response = await http.post(
-      Uri.parse('https://localhost:44307/Insert/Encabezado'),
+      Uri.parse('https://paapi.somee.com/Insert/Encabezado'),
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: {
         'Sucur_Id': '1',
@@ -108,7 +108,7 @@ Future<Map<String, int>> agregarAlCarrito(int productId) async {
 void actualizarCantidad(int vendeId, int productId, int cantidad) async {
   try {
     final response = await http.put(
-      Uri.parse('https://localhost:44307/Update/Detalle'),
+      Uri.parse('https://paapi.somee.com/Update/Detalle'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'Vende_Id': vendeId.toString(),
@@ -134,7 +134,7 @@ void actualizarCantidad(int vendeId, int productId, int cantidad) async {
 void eliminarDetalle(int vendeId) async {
   try {
     final response = await http.delete(
-      Uri.parse('https://localhost:44307/Delete/Detalle/$vendeId'),
+      Uri.parse('https://paapi.somee.com/Delete/Detalle/$vendeId'),
     );
 
     if (response.statusCode == 200) {
@@ -235,125 +235,82 @@ final vendeId = productDetails['ventaId'] ?? 0;
                   SizedBox(height: 20),
 
 
-Center(
-  child: Column(
-    crossAxisAlignment: CrossAxisAlignment.center,
+                  
+                 Center(
+  child: Container(
+    width: 200,
+    height: 200,
+    decoration: BoxDecoration(
+      color: Colors.grey[200],
+      borderRadius: BorderRadius.circular(10),
+    ),
+    child: product.imageUrl != null
+        ? Image.network(
+            product.imageUrl,
+            fit: BoxFit.cover,
+          )
+        : Icon(
+            Icons.image,
+            size: 100,
+            color: Colors.grey[400],
+          ),
+  ),
+),
+
+                  SizedBox(height: 20),
+
+
+
+
+
+          Center(
+  child: Row(
+    mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      // Información del producto
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              product.descripcion,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Existencia: ${product.existencia}',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Precio de compra: ${product.precioCompra}',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Precio de venta: ${product.precioVenta}',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Unidad: ${product.unidadDescripcion}',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Proveedor/Marca: ${product.marcaProveedor}',
-              style: TextStyle(fontSize: 16),
-            ),
-          ],
-        ),
+      IconButton(
+        onPressed: () {
+          setState(() {
+            if (cantidad > 0) {
+              cantidad--; // Decrementar la cantidad si es mayor que cero
+              if (cantidad == 0) {
+                eliminarDetalle(vendeId);
+              } else {
+                actualizarCantidad(vendeId, product.id, cantidad);
+              }
+            }
+          });
+        },
+        icon: Icon(Icons.remove), // Usar el icono de menos
       ),
-      SizedBox(height: 20),
-      // Imagen del producto
-      Container(
-        width: 200,
-        height: 200,
-        decoration: BoxDecoration(
-          color: Colors.grey[200],
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Stack(
-          children: [
-            Positioned.fill(
-              child: product.imageUrl != null
-                  ? Image.network(
-                      product.imageUrl,
-                      fit: BoxFit.cover,
-                    )
-                  : Icon(
-                      Icons.image,
-                      size: 100,
-                      color: Colors.grey[400],
-                    ),
-            ),
-            product.imageUrl == null
-                ? Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            setState(() {
-                              if (cantidad > 0) {
-                                cantidad--;
-                                if (cantidad == 0) {
-                                  eliminarDetalle(vendeId);
-                                } else {
-                                  actualizarCantidad(vendeId, product.id, cantidad);
-                                }
-                              }
-                            });
-                          },
-                          icon: Icon(Icons.remove),
-                        ),
-                        Text(
-                          '$cantidad',
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            setState(() {
-                              cantidad++;
-                              if (isFirstTime) {
-                                agregarAlCarrito(product.id);
-                                isFirstTime = false;
-                              } else {
-                                actualizarCantidad(vendeId, product.id, cantidad);
-                              }
-                            });
-                          },
-                          icon: Icon(Icons.add),
-                        ),
-                      ],
-                    ),
-                  )
-                : SizedBox(),
-          ],
-        ),
+      Text(
+        '$cantidad',
+        style: TextStyle(fontSize: 20),
       ),
-      SizedBox(height: 20),
- ],
-        ),
+      IconButton(
+        onPressed: () {
+          setState(() {
+            cantidad++;
+            if (isFirstTime) {
+              agregarAlCarrito(product.id);
+              isFirstTime = false;
+            } else {
+              actualizarCantidad(vendeId, product.id, cantidad);
+            }
+          });
+        },
+        icon: Icon(Icons.add),
       ),
     ],
   ),
-);
-          }})
-          );}}
+),
+
+                  SizedBox(height: 20),
+                ],
+              ),
+            );
+          }
+        },
+      ),
+    );
+  }
+}

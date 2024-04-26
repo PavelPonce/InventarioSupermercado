@@ -27,7 +27,9 @@ class _ProductsScreenState extends State<ProductsScreen> {
 
   Future<List<Map<String, dynamic>>> fetchProducts() async {
     final response = await http.get(
-        Uri.parse('https://localhost:44307/api/Productos/List/Productos?categId=${widget.categoryId}'));
+         Uri.parse('https://paapi.somee.com/api/Productos/List/Productos?categId=${widget.categoryId}'));
+      
+        // Uri.parse('https://localhost:44307/api/Productos/List/Productos?categId=${widget.categoryId}'));
 
     if (response.statusCode == 200) {
       return List<Map<String, dynamic>>.from(json.decode(response.body));
@@ -200,7 +202,7 @@ Widget build(BuildContext context) {
 Future<void> agregarAlCarrito(BuildContext context, int productId) async {
   try {
     final response = await http.post(
-      Uri.parse('https://localhost:44307/Insert/Encabezado'),
+      Uri.parse('https://paapi.somee.com/Insert/Encabezado'),
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: {
         'Sucur_Id': '1',

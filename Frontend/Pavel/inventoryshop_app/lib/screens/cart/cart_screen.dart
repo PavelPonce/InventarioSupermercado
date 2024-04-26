@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../details/details_screen.dart';
+import 'package:shop_app/screens/home/home_screen.dart'; 
+
 
 class Product {
   final int id;
@@ -94,7 +96,7 @@ String globalVentaEncabezado = '';
 
 class CartScreen extends StatefulWidget {
   static const String routeName = "/cart";
-  final int clientId;
+  final dynamic clientId;
 
   const CartScreen({Key? key, required this.clientId}) : super(key: key);
 
@@ -119,8 +121,9 @@ class _CartScreenState extends State<CartScreen> {
     print('Loading products for client $clientId');
     try {
       final response = await http.get(
-        Uri.parse('https://localhost:44307/Cargar/ListadoCarritoPrincipal?Clien_Id=$clientId'),
+        Uri.parse('https://paapi.somee.com/Cargar/ListadoCarritoPrincipal?Clien_Id=$clientId'),
       );
+
 
       if (response.statusCode == 200) {
         List<dynamic> responseData = json.decode(response.body);
@@ -137,10 +140,10 @@ class _CartScreenState extends State<CartScreen> {
             responseData.map((data) => Product.fromJson(data)).toList();
         return products;
       } else {
-        throw Exception('Failed to load products');
+        throw Exception('Su carrito de compras esta Vacio');
       }
     } catch (error) {
-      throw Exception('Failed to load products: $error');
+      throw Exception('Su carrito de compras esta Vacio');
     }
   }
 
@@ -152,16 +155,20 @@ class _CartScreenState extends State<CartScreen> {
       );
       return;
     }
+
+
     if (_selectedMethod != 'Efectivo' && _cardNumberController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Ingrese el número de tarjeta')),
+        
       );
       return;
     }
 
     try {
       final response = await http.post(
-  Uri.parse('https://localhost:44307/EmisionFactura?mtPag_Id=$_selectedMethod&venen_Id=$globalVentaEncabezado&venen_NroTarjeta=${_cardNumberController.text}'),
+        
+  Uri.parse('https://paapi.somee.com/EmisionFactura?mtPag_Id=$_selectedMethod&venen_Id=$globalVentaEncabezado&venen_NroTarjeta=${_cardNumberController.text}'),
 );
 
 
@@ -182,7 +189,7 @@ class _CartScreenState extends State<CartScreen> {
    void _eliminarProducto(int vendeId) async {
   try {
     final response = await http.delete(
-      Uri.parse('https://localhost:44307/Delete/Detalle/$vendeId'),
+      Uri.parse('https://paapi.somee.com/Delete/Detalle/$vendeId'),
     );
     if (response.statusCode == 200) {
       print('Detalle eliminado exitosamente');
@@ -215,7 +222,7 @@ class _CartScreenState extends State<CartScreen> {
             return Column(
               children: [
                 Text(
-                  'Total Products: ${products.length}',
+                  'Total Productos: ${products.length}',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 Expanded(
@@ -230,7 +237,15 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: _emitirVenta,
+                  onPressed:(){
+                    _emitirVenta();
+                     Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomeScreen(),
+                      ),
+                    );
+                  },
                   child: Text('Emitir Venta'),
                 ),
                 Text(
@@ -309,7 +324,7 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   Future<List> _fetchPaymentMethods() async {
-    final response = await http.get(Uri.parse('https://localhost:44307/MetodoPago/DDL'));
+    final response = await http.get(Uri.parse('https://paapi.somee.com/MetodoPago/DDL'));
     if (response.statusCode == 200) {
       return json.decode(response.body) as List;
     } else {
