@@ -9,34 +9,35 @@ import '../../../components/no_account_text.dart';
 import '../../../constants.dart';
 import 'package:http/http.dart' as http;
 
-class ForgotPassForm extends StatefulWidget {
-  const ForgotPassForm({super.key});
+class ReestablecerForm extends StatefulWidget {
+  const ReestablecerForm({super.key});
 
   @override
-  _ForgotPassFormState createState() => _ForgotPassFormState();
+  _ReestablecerFormState createState() => _ReestablecerFormState();
 }
 
-class _ForgotPassFormState extends State<ForgotPassForm> {
+class _ReestablecerFormState extends State<ReestablecerForm> {
   Future<void> sendEmail() async{
-    var url = Uri.parse(
+    try {
+      var url = Uri.parse(
       ApiEndPoint.baseUrl + 'Email/SendMail',
     );
 
     await http.post(url,
     body: jsonEncode({
-          "EmailToId": email,
-          "EmailToName": 'string',
-          "EmailSubject": 'string',
-          "EmailBody": 'string',
-          "VerificationCode": 'string',
+          "Usuar_Contrasena": password,
         }),
       );
+    } catch (Exception) {
+      print('');
+    }
+    
   }
 
 
   final _formKey = GlobalKey<FormState>();
   List<String> errors = [];
-  String? email;
+  String? password;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -44,37 +45,26 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
       child: Column(
         children: [
           TextFormField(
-            keyboardType: TextInputType.emailAddress,
-            onSaved: (newValue) => email = newValue,
+            onSaved: (newValue) => password = newValue,
             onChanged: (value) {
-              if (value.isNotEmpty && errors.contains(kEmailNullError)) {
+              if (value.isNotEmpty) {
                 setState(() {
-                  errors.remove(kEmailNullError);
-                });
-              } else if (emailValidatorRegExp.hasMatch(value) &&
-                  errors.contains(kInvalidEmailError)) {
-                setState(() {
-                  errors.remove(kInvalidEmailError);
+                  errors.remove(kPassNullError);
                 });
               }
               return;
             },
             validator: (value) {
-              if (value!.isEmpty && !errors.contains(kEmailNullError)) {
+              if (value!.isEmpty && !errors.contains(kPassNullError)) {
                 setState(() {
-                  errors.add(kEmailNullError);
-                });
-              } else if (!emailValidatorRegExp.hasMatch(value) &&
-                  !errors.contains(kInvalidEmailError)) {
-                setState(() {
-                  errors.add(kInvalidEmailError);
+                  errors.add(kPassNullError);
                 });
               }
               return null;
             },
             decoration: const InputDecoration(
-              labelText: "Email",
-              hintText: "Ingresa tu Email",
+              labelText: "Contraseña",
+              hintText: "Ingresa tu contraseña",
               // If  you are using latest version of flutter then lable text and hint text shown like this
               // if you r using flutter less then 1.20.* then maybe this is not working properly
               floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -88,7 +78,6 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                 // Do what you want to do
-
               }
             },
             child: const Text("Continuar"),

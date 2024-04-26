@@ -38,7 +38,7 @@ final Map<String, WidgetBuilder> routes = {
   final Map<String, dynamic>? arguments = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
   final int? categoryId = arguments?['categoryId'] as int?;
   return ProductsScreen(categoryId: categoryId ?? 0); 
- },
+  },
   DetailsScreen.routeName: (context) => const DetailsScreen(),
   CartScreen.routeName: (context) => const CartScreen(),
 

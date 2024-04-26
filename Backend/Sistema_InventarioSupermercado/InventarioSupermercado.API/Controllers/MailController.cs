@@ -9,7 +9,7 @@ using AutoMapper;
 namespace InventarioSupermercado.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class MailController : ControllerBase
     {
         private readonly IMailService _mailService;

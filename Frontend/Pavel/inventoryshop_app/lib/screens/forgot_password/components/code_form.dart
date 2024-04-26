@@ -9,14 +9,14 @@ import '../../../components/no_account_text.dart';
 import '../../../constants.dart';
 import 'package:http/http.dart' as http;
 
-class ForgotPassForm extends StatefulWidget {
-  const ForgotPassForm({super.key});
+class CodeForm extends StatefulWidget {
+  const CodeForm({super.key});
 
   @override
-  _ForgotPassFormState createState() => _ForgotPassFormState();
+  _CodeFormState createState() => _CodeFormState();
 }
 
-class _ForgotPassFormState extends State<ForgotPassForm> {
+class _CodeFormState extends State<CodeForm> {
   Future<void> sendEmail() async{
     var url = Uri.parse(
       ApiEndPoint.baseUrl + 'Email/SendMail',
@@ -73,8 +73,8 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
               return null;
             },
             decoration: const InputDecoration(
-              labelText: "Email",
-              hintText: "Ingresa tu Email",
+              labelText: "Código de Verificacion",
+              hintText: "Ingresa tu Código de Verificacion",
               // If  you are using latest version of flutter then lable text and hint text shown like this
               // if you r using flutter less then 1.20.* then maybe this is not working properly
               floatingLabelBehavior: FloatingLabelBehavior.always,

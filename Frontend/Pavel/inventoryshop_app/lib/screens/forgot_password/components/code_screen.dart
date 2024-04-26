@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/screens/forgot_password/components/code_form.dart';
 
-import 'components/forgot_pass_form.dart';
+class CodeVerification extends StatelessWidget {
+  const CodeVerification({super.key});
 
-class ForgotPasswordScreen extends StatelessWidget {
-  static String routeName = "/forgot_password";
-
-  const ForgotPasswordScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Forgot Password"),
+        title: const Text("Reestablecer Contraseña"),
       ),
       body: const SizedBox(
         width: double.infinity,
@@ -21,7 +19,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               children: [
                 SizedBox(height: 16),
                 Text(
-                  "Olvidé mi Contraseña",
+                  "Su codigo de verificacion fue enviado.",
                   style: TextStyle(
                     fontSize: 24,
                     color: Colors.black,
@@ -29,16 +27,17 @@ class ForgotPasswordScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "Porfavor ingresa un correo y te mandaremos un codigo para reestablecer tu contraseña",
+                  "Porfavor ingrese el codigo que fue enviado a su correo electrónico",
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 32),
-                ForgotPassForm(),
+                CodeForm(),
               ],
             ),
           ),
         ),
       ),
     );
+  
   }
 }
